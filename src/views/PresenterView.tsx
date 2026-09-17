@@ -3,6 +3,7 @@ import { useGameStore } from "../store/gameStore";
 import BancoEditor from "../components/BancoEditor";
 import DineroRapidoPanel from "../components/DineroRapidoPanel";
 import { totalCombinado } from "../lib/dineroRapido";
+import { enviarSfx } from "../lib/channel";
 
 export default function PresenterView() {
   const s = useGameStore((st) => st.estado);
@@ -29,6 +30,12 @@ export default function PresenterView() {
           </p>
         </div>
         <div style={{ display: "flex", gap: 8 }}>
+          <button onClick={() => enviarSfx("redoble")} title="Suena solo en el Tablero">
+            🥁 Redoble
+          </button>
+          <button onClick={() => enviarSfx("aplausos")} title="Suena solo en el Tablero">
+            👏 Aplausos
+          </button>
           <button onClick={deshacer} disabled={historial.length === 0}>
             Deshacer
           </button>

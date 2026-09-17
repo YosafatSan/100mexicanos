@@ -1,11 +1,27 @@
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useBoardState } from "../hooks/useBoardState";
+import { useGameSounds } from "../hooks/useGameSounds";
+import { onMessage } from "../lib/channel";
+import { desbloquear, sonidos } from "../lib/sound";
 import ScoreNumber from "../components/ScoreNumber";
 import CasillaFlip from "../components/CasillaFlip";
 import StrikeMarks from "../components/StrikeMarks";
+import StrikeFlash from "../components/StrikeFlash";
 import DineroRapidoBoard from "../components/DineroRapidoBoard";
 
 export default function BoardView() {
   const s = useBoardState();
+  const [audioListo, setAudioListo] = useState(false);
+
+  useGameSounds(s, audioListo);
+
+  useEffect(() => {
+    if (!audioListo) return;
+    return onMessage((msg) => {
+      if (msg.type === "sfx") sonidos[msg.sonido]();
+    });
+  }, [audioListo]);
 
   if (!s) {
     return (
@@ -17,6 +33,7 @@ export default function BoardView() {
 
   const esDineroRapido = s.fase === "dineroRapidoSetup" || s.fase === "dineroRapidoJugando";
   const esResultadoFinal = s.fase === "dineroRapidoResultado";
+  const esFinJuego = s.fase === "finJuego";
 
   return (
     <div
@@ -29,8 +46,34 @@ export default function BoardView() {
         gap: 24,
         textAlign: "center",
         padding: 24,
+        position: "relative",
       }}
     >
+      {!audioListo && (
+        <button
+          onClick={() => {
+            desbloquear();
+            setAudioListo(true);
+          }}
+          style={{
+            position: "fixed",
+            top: 16,
+            right: 16,
+            zIndex: 10,
+            padding: "8px 14px",
+            borderRadius: 8,
+            border: "1px solid #444",
+            background: "#1a1a2e",
+            color: "#fff",
+            cursor: "pointer",
+          }}
+        >
+          🔊 Activar sonido
+        </button>
+      )}
+
+      <StrikeFlash trigger={s.strikes} />
+
       {esDineroRapido && <DineroRapidoBoard dr={s.dineroRapido} />}
 
       {esResultadoFinal && (
@@ -49,7 +92,18 @@ export default function BoardView() {
             {s.esDesempate ? "Desempate" : `Ronda ${s.numeroRonda}`} · x{s.multiplicadorActual}
           </p>
 
-          {s.preguntaActual ? (
+          {esFinJuego && s.ganadorRondaPrincipal ? (
+            <motion.h1
+              key="ganador"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
+              style={{ fontSize: 40, margin: 0 }}
+            >
+              🎉 {s.equipos[s.ganadorRondaPrincipal].nombre} gana la ronda principal con{" "}
+              {s.equipos[s.ganadorRondaPrincipal].puntos} puntos
+            </motion.h1>
+          ) : s.preguntaActual ? (
             <h1 style={{ fontSize: 32, margin: 0, maxWidth: 900 }}>{s.preguntaActual.texto}</h1>
           ) : (
             <h1 style={{ fontSize: 32, margin: 0 }}>{s.mensaje}</h1>
@@ -69,9 +123,7 @@ export default function BoardView() {
             </>
           )}
 
-          {(s.fase === "finRonda" || s.fase === "finJuego") && (
-            <p style={{ fontSize: 24, margin: 0, opacity: 0.9 }}>{s.mensaje}</p>
-          )}
+          {s.fase === "finRonda" && <p style={{ fontSize: 24, margin: 0, opacity: 0.9 }}>{s.mensaje}</p>}
 
           <div style={{ display: "flex", gap: 64 }}>
             {(["equipoA", "equipoB"] as const).map((id) => {
