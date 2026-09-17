@@ -1,0 +1,124 @@
+{
+  "preguntas": [
+    {
+      "id": "p001",
+      "categoria": "Comida",
+      "texto": "Nombra algo que la gente le pone al café",
+      "respuestas": [
+        { "texto": "Azúcar", "puntos": 42 },
+        { "texto": "Leche", "puntos": 30 },
+        { "texto": "Crema", "puntos": 15 },
+        { "texto": "Canela", "puntos": 8 },
+        { "texto": "Miel", "puntos": 5 }
+      ]
+    },
+    {
+      "id": "p002",
+      "categoria": "Comida",
+      "texto": "Nombra una fruta de color verde",
+      "respuestas": [
+        { "texto": "Sandía", "puntos": 35 },
+        { "texto": "Manzana", "puntos": 28 },
+        { "texto": "Kiwi", "puntos": 18 },
+        { "texto": "Uva", "puntos": 12 },
+        { "texto": "Aguacate", "puntos": 7 }
+      ]
+    },
+    {
+      "id": "p003",
+      "categoria": "Comida",
+      "texto": "Nombra un snack típico mexicano",
+      "respuestas": [
+        { "texto": "Tacos", "puntos": 38 },
+        { "texto": "Elotes", "puntos": 25 },
+        { "texto": "Chicharrones", "puntos": 16 },
+        { "texto": "Tostadas", "puntos": 12 },
+        { "texto": "Duritos", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p004",
+      "categoria": "Casa",
+      "texto": "Nombra algo que se te olvida apagar antes de salir de casa",
+      "respuestas": [
+        { "texto": "La luz", "puntos": 40 },
+        { "texto": "La estufa", "puntos": 27 },
+        { "texto": "La televisión", "puntos": 18 },
+        { "texto": "El aire acondicionado", "puntos": 10 },
+        { "texto": "La plancha", "puntos": 5 }
+      ]
+    },
+    {
+      "id": "p005",
+      "categoria": "Cuerpo",
+      "texto": "Nombra una parte del cuerpo que te duele después de un día pesado",
+      "respuestas": [
+        { "texto": "La espalda", "puntos": 37 },
+        { "texto": "Los pies", "puntos": 29 },
+        { "texto": "La cabeza", "puntos": 17 },
+        { "texto": "El cuello", "puntos": 11 },
+        { "texto": "Las piernas", "puntos": 6 }
+      ]
+    },
+    {
+      "id": "p006",
+      "categoria": "Transporte",
+      "texto": "Nombra algo que ves seguido en el transporte público",
+      "respuestas": [
+        { "texto": "Vendedores ambulantes", "puntos": 33 },
+        { "texto": "Gente dormida", "puntos": 26 },
+        { "texto": "Alguien en el celular", "puntos": 22 },
+        { "texto": "Músicos", "puntos": 12 },
+        { "texto": "Asientos ocupados", "puntos": 7 }
+      ]
+    },
+    {
+      "id": "p007",
+      "categoria": "Trabajo",
+      "texto": "Nombra una excusa común para llegar tarde al trabajo",
+      "respuestas": [
+        { "texto": "El tráfico", "puntos": 44 },
+        { "texto": "Se me hizo tarde", "puntos": 23 },
+        { "texto": "El despertador no sonó", "puntos": 16 },
+        { "texto": "El transporte no llegó", "puntos": 10 },
+        { "texto": "Problema familiar", "puntos": 7 }
+      ]
+    },
+    {
+      "id": "p008",
+      "categoria": "Animales",
+      "texto": "Nombra un animal que la gente tiene como mascota",
+      "respuestas": [
+        { "texto": "Perro", "puntos": 48 },
+        { "texto": "Gato", "puntos": 32 },
+        { "texto": "Pájaro", "puntos": 10 },
+        { "texto": "Pez", "puntos": 6 },
+        { "texto": "Hámster", "puntos": 4 }
+      ]
+    },
+    {
+      "id": "p009",
+      "categoria": "Vacaciones",
+      "texto": "Nombra algo que llevas siempre en tu maleta de viaje",
+      "respuestas": [
+        { "texto": "Ropa", "puntos": 30 },
+        { "texto": "Cargador de celular", "puntos": 27 },
+        { "texto": "Cepillo de dientes", "puntos": 20 },
+        { "texto": "Medicinas", "puntos": 14 },
+        { "texto": "Cámara", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p010",
+      "categoria": "Escuela",
+      "texto": "Nombra algo que un maestro dice seguido en clase",
+      "respuestas": [
+        { "texto": "Guarden silencio", "puntos": 34 },
+        { "texto": "Saquen una hoja", "puntos": 29 },
+        { "texto": "Va a haber examen", "puntos": 19 },
+        { "texto": "Pongan atención", "puntos": 12 },
+        { "texto": "Apaguen el celular", "puntos": 6 }
+      ]
+    }
+  ]
+}
