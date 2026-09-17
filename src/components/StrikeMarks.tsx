@@ -25,8 +25,7 @@ export default function StrikeMarks({ strikes, max }: { strikes: number; max: nu
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", duration: 0.4, bounce: 0.25 }}
                 style={{
-                  fontSize: 30,
-                  fontWeight: 900,
+                  fontSize: 38,
                   color: "var(--color-red)",
                   textShadow: "0 0 12px var(--color-red)",
                 }}

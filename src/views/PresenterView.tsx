@@ -30,6 +30,12 @@ export default function PresenterView() {
           </p>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+          <button
+            onClick={() => window.open(`${window.location.origin}/#/tablero`, "tablero-100mx")}
+            title="Abre (o enfoca) la vista Tablero en otra ventana — muévela a tu segundo monitor/proyector"
+          >
+            🖥️ Abrir Tablero
+          </button>
           <button onClick={() => enviarSfx("redoble")} title="Suena solo en el Tablero">
             🥁 Redoble
           </button>

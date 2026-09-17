@@ -6,7 +6,7 @@ import { useGameSounds } from "../hooks/useGameSounds";
 import { onMessage } from "../lib/channel";
 import { desbloquear, sonidos } from "../lib/sound";
 import ScoreNumber from "../components/ScoreNumber";
-import CasillaFlip from "../components/CasillaFlip";
+import TableroRespuestas from "../components/TableroRespuestas";
 import StrikeMarks from "../components/StrikeMarks";
 import StrikeFlash from "../components/StrikeFlash";
 import DineroRapidoBoard from "../components/DineroRapidoBoard";
@@ -129,11 +129,7 @@ export default function BoardView() {
 
           {(s.fase === "jugando" || s.fase === "robo") && (
             <>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, width: 560 }}>
-                {s.casillas.map((c, i) => (
-                  <CasillaFlip key={i} numero={i + 1} casilla={c} />
-                ))}
-              </div>
+              <TableroRespuestas casillas={s.casillas} />
               <StrikeMarks strikes={s.strikes} max={s.strikesMax} />
               {s.fase === "robo" && (
                 <p style={{ color: "var(--color-red)", fontSize: 24, fontWeight: 800, margin: 0 }}>¡ROBO!</p>
