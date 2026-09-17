@@ -6,7 +6,7 @@ const easeInOut = [0.77, 0, 0.175, 1] as const;
 
 export default function CasillaFlip({ numero, casilla }: { numero: number; casilla: Casilla }) {
   return (
-    <div style={{ perspective: 1000, height: 72 }}>
+    <div style={{ perspective: 1000, height: 76 }}>
       <motion.div
         animate={{ rotateY: casilla.revelada ? 180 : 0 }}
         transition={{ duration: 0.45, ease: easeInOut }}
@@ -17,14 +17,16 @@ export default function CasillaFlip({ numero, casilla }: { numero: number; casil
           transformStyle: "preserve-3d",
         }}
       >
-        <Cara oculta={false}>
-          <span style={{ fontSize: 24, fontWeight: 700 }}>{numero}</span>
+        <Cara revelada={false}>
+          <span className="marcador-digital" style={{ fontSize: 26, fontWeight: 700 }}>
+            {numero}
+          </span>
         </Cara>
-        <Cara oculta transformExtra="rotateY(180deg)">
+        <Cara revelada transformExtra="rotateY(180deg)">
           <span style={{ fontSize: 18, fontWeight: 700, textTransform: "uppercase" }}>
             {casilla.respuesta.texto}
           </span>
-          <span style={{ fontSize: 20, fontWeight: 800, color: "var(--color-accent)" }}>
+          <span className="marcador-digital" style={{ fontSize: 22, fontWeight: 800, color: "var(--color-accent)" }}>
             {casilla.respuesta.puntos}
           </span>
         </Cara>
@@ -35,11 +37,11 @@ export default function CasillaFlip({ numero, casilla }: { numero: number; casil
 
 function Cara({
   children,
-  oculta,
+  revelada,
   transformExtra,
 }: {
   children: ReactNode;
-  oculta: boolean;
+  revelada: boolean;
   transformExtra?: string;
 }) {
   return (
@@ -50,8 +52,9 @@ function Cara({
         backfaceVisibility: "hidden",
         transform: transformExtra,
         borderRadius: 8,
-        background: oculta ? "#1f4d2b" : "#1a1a2e",
-        border: "2px solid #333",
+        overflow: "hidden",
+        background: revelada ? "var(--color-panel-revelada)" : "var(--color-panel)",
+        border: `2px solid ${revelada ? "#2f6b3f" : "var(--color-border)"}`,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -59,6 +62,9 @@ function Cara({
         color: "#fff",
       }}
     >
+      {!revelada && (
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "var(--arcoiris)" }} />
+      )}
       {children}
     </div>
   );

@@ -1,9 +1,26 @@
 :root {
-  --color-bg: #0a0a12;
+  --color-bg: #07070f;
   --color-panel: #14142a;
+  --color-panel-revelada: #163a22;
   --color-accent: #ffcc00;
   --color-red: #e11d2e;
   --color-text: #f5f5f5;
+  --color-border: #2a2a45;
+
+  --font-display: "Baloo 2", "Segoe UI", system-ui, sans-serif;
+  --font-digital: "Orbitron", "Segoe UI", system-ui, sans-serif;
+
+  --arcoiris: linear-gradient(
+    90deg,
+    #ff3b3b,
+    #ff9d3b,
+    #ffe93b,
+    #4ade80,
+    #38bdf8,
+    #a78bfa,
+    #f472b6
+  );
+
   color-scheme: dark;
 }
 
@@ -26,4 +43,23 @@ body {
 
 a {
   color: inherit;
+}
+
+/* El look "programa de TV" (fuente redondeada + números estilo LED) es
+   solo para lo que ve el público (Tablero); el panel del presentador se
+   queda compacto y funcional con la fuente del sistema. */
+.pantalla-tablero h1,
+.pantalla-tablero h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+input,
+button {
+  font-family: inherit;
+}
+
+.marcador-digital {
+  font-family: var(--font-digital);
+  font-variant-numeric: tabular-nums;
 }

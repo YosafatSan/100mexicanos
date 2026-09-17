@@ -26,7 +26,7 @@ El usuario quiere un juego que simule fielmente el programa de TV "100 Mexicanos
 | Contenido/preguntas | Editor dentro de la app + set de ejemplo + importar banco vía JSON + vista previa de la pregunta antes de lanzarla al tablero |
 | Equipos | 2 equipos, con nombre de equipo y nombres de jugadores individuales |
 | Fidelidad visual | Total, basada en referencias reales (el usuario las compartirá; mientras tanto se usa la investigación inicial de arriba) |
-| Sonidos | Genéricos de concurso (no clips originales del programa) — ding de acierto, buzzer de error, redoble, aplausos, tema de entrada |
+| Sonidos | Actualizado en Fase 5/6: 4 clips reales del programa (correcto, incorrecto, triunfo, "a jugar") provistos por el usuario, en `public/sonidos/`. El resto (campana, tensión, redoble, aplausos, derrota, tick) sigue sintetizado con Web Audio API por no haber clip real disponible |
 | Reglas de puntaje | Configurables antes de cada partida, con el formato clásico como valores por defecto (300 pts para ganar, 3 simples + 1 doble + 1 triple, ronda de desempate a 1 strike) |
 | Persistencia | Ninguna entre sesiones: cada partida inicia de cero al abrir la app |
 | Cronómetro en rondas normales | No hay; el ritmo lo marca el presentador. Solo hay cronómetro en Dinero Rápido (15s / 20s) |
@@ -113,13 +113,13 @@ Formato JSON importable por el editor:
 
 ## Plan de fases sugerido
 
-1. **Fase 0 — Setup**: proyecto Vite + React + TS en esta carpeta, estructura de carpetas, este `PRD.md`.
-2. **Fase 1 — Esqueleto y sync**: las dos vistas renderizando un estado de ejemplo, comunicación por `BroadcastChannel` funcionando (cambios en Presentador se reflejan en Tablero).
-3. **Fase 2 — Lógica de juego**: rondas normales completas (face-off manual, strikes, robo, multiplicadores, undo), con el set de preguntas de ejemplo.
-4. **Fase 3 — Editor de preguntas**: crear/editar, importar JSON, preview, selección aleatoria con override manual.
-5. **Fase 4 — Dinero Rápido**: cronómetros, captura de respuestas, cálculo de puntaje final.
-6. **Fase 5 — Pulido**: animaciones finales, set de sonidos genéricos integrado.
-7. **Fase 6 — Fidelidad visual real**: cuando el usuario comparta sus capturas/video de referencia del programa clásico, ajustar colores, tipografía y logo del tablero a esas referencias.
+1. **Fase 0 — Setup** ✅: proyecto Vite + React + TS en esta carpeta, estructura de carpetas, este `PRD.md`.
+2. **Fase 1 — Esqueleto y sync** ✅: las dos vistas renderizando un estado de ejemplo, comunicación por `BroadcastChannel` funcionando (cambios en Presentador se reflejan en Tablero).
+3. **Fase 2 — Lógica de juego** ✅: rondas normales completas (face-off manual, strikes, robo, multiplicadores, undo), con el set de preguntas de ejemplo.
+4. **Fase 3 — Editor de preguntas** ✅: crear/editar, importar JSON, preview, selección aleatoria con override manual.
+5. **Fase 4 — Dinero Rápido** ✅: cronómetros (a prueba de drift, basados en timestamp), captura de respuestas, cálculo de puntaje final.
+6. **Fase 5 — Pulido** ✅: animaciones (flip 3D, spring en banner de ganador, flash de strike), sonidos sintetizados con Web Audio API integrados.
+7. **Fase 6 — Fidelidad visual y sonora** ✅: el usuario compartió los 4 clips de audio reales del programa (correcto, incorrecto, triunfo, "a jugar") en `public/sonidos/`, ya integrados reemplazando sus equivalentes sintetizados. Para lo visual no se compartieron capturas/video, así que se aplicó la investigación de imágenes ya documentada arriba: tipografía "Baloo 2" (redondeada, estilo concurso) para textos del Tablero, "Orbitron" con glow para marcador/strikes/timer (look LED), acentos arcoíris en el borde de las casillas y marco superior/inferior del Tablero, wordmark con degradado de colores en vez del logo oficial (no se cuenta con el asset real). El panel del Presentador se mantiene con la fuente del sistema por ser una herramienta de control, no lo que ve el público. **Pendiente si el usuario comparte capturas reales**: afinar colores exactos, tipografía exacta y logo pixel-perfect.
 
 ## Verificación
 

@@ -22,14 +22,14 @@ export default function PresenterView() {
 
   return (
     <div style={{ padding: 24, maxWidth: 780, display: "flex", flexDirection: "column", gap: 20 }}>
-      <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <header style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
         <div>
-          <h1 style={{ margin: 0 }}>Vista Presentador</h1>
+          <h1 style={{ margin: 0, fontSize: 22 }}>Vista Presentador</h1>
           <p style={{ opacity: 0.7, margin: "4px 0 0" }}>
             {s.esDesempate ? "Ronda de desempate" : `Ronda ${s.numeroRonda}`} · multiplicador x{s.multiplicadorActual} · strikes máx {s.strikesMax}
           </p>
         </div>
-        <div style={{ display: "flex", gap: 8 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           <button onClick={() => enviarSfx("redoble")} title="Suena solo en el Tablero">
             🥁 Redoble
           </button>

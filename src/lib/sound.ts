@@ -1,7 +1,9 @@
-// Efectos de sonido sintetizados con Web Audio API — sin archivos externos,
-// así que no hay ningún tema de licencias. El navegador exige un gesto del
-// usuario antes de reproducir audio, por eso `desbloquear()` se llama desde
-// un botón en la vista Tablero la primera vez.
+// Efectos de sonido: los 4 clips reales del programa (correcto, incorrecto,
+// triunfo, a-jugar) viven en public/sonidos/ y se reproducen con
+// HTMLAudioElement. El resto (sin clip real disponible) sigue sintetizado
+// con Web Audio API — cero archivos externos, cero temas de licencia.
+// El navegador exige un gesto del usuario antes de reproducir audio, por
+// eso `desbloquear()` se llama desde un botón en la vista Tablero.
 
 let ctx: AudioContext | null = null;
 
@@ -10,11 +12,43 @@ function getCtx(): AudioContext {
   return ctx;
 }
 
+const NOMBRES_CLIP = ["correcto", "incorrecto", "triunfo", "ajugar"] as const;
+type NombreClip = (typeof NOMBRES_CLIP)[number];
+
+const clips = new Map<NombreClip, HTMLAudioElement>();
+
+function clip(nombre: NombreClip): HTMLAudioElement {
+  let audio = clips.get(nombre);
+  if (!audio) {
+    audio = new Audio(`/sonidos/${nombre}.mp3`);
+    audio.preload = "auto";
+    clips.set(nombre, audio);
+  }
+  return audio;
+}
+
+function reproducirClip(nombre: NombreClip, volumen = 1) {
+  const audio = clip(nombre).cloneNode(true) as HTMLAudioElement;
+  audio.volume = volumen;
+  audio.play().catch(() => {});
+}
+
 export function desbloquear() {
   const audioCtx = getCtx();
   if (audioCtx.state === "suspended") audioCtx.resume();
-  // Beep inaudible (volumen 0) para terminar de "activar" el contexto en algunos navegadores.
   tono(440, 0.01, "sine", 0);
+  NOMBRES_CLIP.forEach((nombre) => {
+    const audio = clip(nombre);
+    audio.volume = 0;
+    audio
+      .play()
+      .then(() => {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.volume = 1;
+      })
+      .catch(() => {});
+  });
 }
 
 function tono(frecuencia: number, duracion: number, tipo: OscillatorType = "sine", volumen = 0.25, t0 = 0) {
@@ -50,14 +84,21 @@ function ruido(duracion: number, volumen = 0.2, t0 = 0) {
 }
 
 export const sonidos = {
+  // Clips reales del programa
   ding() {
-    tono(880, 0.15, "sine", 0.22, 0);
-    tono(1320, 0.22, "sine", 0.18, 0.08);
+    reproducirClip("correcto");
   },
   buzzer() {
-    tono(110, 0.5, "sawtooth", 0.28);
-    tono(104, 0.5, "sawtooth", 0.18);
+    reproducirClip("incorrecto");
   },
+  empezar() {
+    reproducirClip("ajugar");
+  },
+  victoria() {
+    reproducirClip("triunfo");
+  },
+
+  // Sintetizados (sin clip real disponible)
   campana() {
     tono(660, 0.3, "triangle", 0.22);
   },
@@ -67,10 +108,6 @@ export const sonidos = {
   },
   fanfarria() {
     [523, 659, 784, 1046].forEach((f, i) => tono(f, 0.25, "square", 0.18, i * 0.12));
-  },
-  victoria() {
-    [523, 659, 784, 1046, 1318].forEach((f, i) => tono(f, 0.3, "square", 0.2, i * 0.14));
-    ruido(0.6, 0.06, 0);
   },
   derrota() {
     [392, 349, 311, 262].forEach((f, i) => tono(f, 0.35, "sawtooth", 0.18, i * 0.2));

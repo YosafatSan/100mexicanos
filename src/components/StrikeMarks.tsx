@@ -7,10 +7,11 @@ export default function StrikeMarks({ strikes, max }: { strikes: number; max: nu
         <div
           key={i}
           style={{
-            width: 48,
-            height: 48,
+            width: 50,
+            height: 50,
             borderRadius: 8,
-            border: "2px solid #5a1a1a",
+            border: `2px solid ${i < strikes ? "var(--color-red)" : "#3a1418"}`,
+            background: "#1a0808",
             display: "grid",
             placeItems: "center",
             overflow: "hidden",
@@ -19,12 +20,18 @@ export default function StrikeMarks({ strikes, max }: { strikes: number; max: nu
           <AnimatePresence>
             {i < strikes && (
               <motion.span
+                className="marcador-digital"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", duration: 0.4, bounce: 0.25 }}
-                style={{ fontSize: 32, fontWeight: 900, color: "var(--color-red)" }}
+                style={{
+                  fontSize: 30,
+                  fontWeight: 900,
+                  color: "var(--color-red)",
+                  textShadow: "0 0 12px var(--color-red)",
+                }}
               >
-                ✗
+                X
               </motion.span>
             )}
           </AnimatePresence>

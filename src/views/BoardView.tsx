@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { CSSProperties } from "react";
 import { motion } from "framer-motion";
 import { useBoardState } from "../hooks/useBoardState";
 import { useGameSounds } from "../hooks/useGameSounds";
@@ -9,6 +10,16 @@ import CasillaFlip from "../components/CasillaFlip";
 import StrikeMarks from "../components/StrikeMarks";
 import StrikeFlash from "../components/StrikeFlash";
 import DineroRapidoBoard from "../components/DineroRapidoBoard";
+import Wordmark from "../components/Wordmark";
+
+const BARRA_ARCOIRIS: CSSProperties = {
+  position: "fixed",
+  left: 0,
+  right: 0,
+  height: 6,
+  background: "var(--arcoiris)",
+  zIndex: 5,
+};
 
 export default function BoardView() {
   const s = useBoardState();
@@ -25,8 +36,11 @@ export default function BoardView() {
 
   if (!s) {
     return (
-      <div style={{ height: "100%", display: "grid", placeItems: "center" }}>
+      <div style={{ height: "100%", display: "grid", placeItems: "center", gap: 16 }}>
+        <div style={{ ...BARRA_ARCOIRIS, top: 0 }} />
+        <Wordmark size={32} />
         <p style={{ opacity: 0.6 }}>Esperando conexión con el Presentador…</p>
+        <div style={{ ...BARRA_ARCOIRIS, bottom: 0 }} />
       </div>
     );
   }
@@ -37,6 +51,7 @@ export default function BoardView() {
 
   return (
     <div
+      className="pantalla-tablero"
       style={{
         height: "100%",
         display: "flex",
@@ -71,6 +86,9 @@ export default function BoardView() {
           🔊 Activar sonido
         </button>
       )}
+
+      <div style={{ ...BARRA_ARCOIRIS, top: 0 }} />
+      <div style={{ ...BARRA_ARCOIRIS, bottom: 0 }} />
 
       <StrikeFlash trigger={s.strikes} />
 

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Wordmark from "../components/Wordmark";
 
 export default function HomeView() {
   return (
@@ -12,7 +13,7 @@ export default function HomeView() {
         gap: 24,
       }}
     >
-      <h1>100 Mexicanos Dijeron</h1>
+      <Wordmark size={44} />
       <p>Abre cada vista en su propia ventana/monitor.</p>
       <div style={{ display: "flex", gap: 16 }}>
         <Link to="/presentador">Vista Presentador</Link>

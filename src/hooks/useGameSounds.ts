@@ -21,11 +21,11 @@ export function useGameSounds(estado: EstadoJuego | null, activo: boolean) {
 
     if (estado.strikes > prev.strikes) sonidos.buzzer();
 
+    if (estado.fase === "faceoff" && prev.fase === "seleccionPregunta") sonidos.empezar();
     if (estado.fase === "jugando" && prev.fase === "faceoff") sonidos.campana();
     if (estado.fase === "robo" && prev.fase !== "robo") sonidos.tension();
-    if ((estado.fase === "finRonda" || estado.fase === "finJuego") && prev.fase !== estado.fase) {
-      sonidos.fanfarria();
-    }
+    if (estado.fase === "finRonda" && prev.fase !== "finRonda") sonidos.fanfarria();
+    if (estado.fase === "finJuego" && prev.fase !== "finJuego") sonidos.victoria();
 
     const dr = estado.dineroRapido;
     const drPrev = prev.dineroRapido;
