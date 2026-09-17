@@ -20,12 +20,12 @@ export default function StrikeMarks({ strikes, max }: { strikes: number; max: nu
           <AnimatePresence>
             {i < strikes && (
               <motion.span
-                className="marcador-digital"
+                className="marcador-puntaje"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", duration: 0.4, bounce: 0.25 }}
                 style={{
-                  fontSize: 38,
+                  fontSize: 30,
                   color: "var(--color-red)",
                   textShadow: "0 0 12px var(--color-red)",
                 }}

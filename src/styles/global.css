@@ -10,6 +10,7 @@
 
   --font-display: "Baloo 2", "Segoe UI", system-ui, sans-serif;
   --font-led: "VT323", "Consolas", monospace;
+  --font-score: "Chakra Petch", "Consolas", monospace;
 
   --arcoiris: linear-gradient(
     90deg,
@@ -49,16 +50,13 @@ a {
 /* El look "programa de TV" (fuente redondeada + panel tipo terminal LED)
    es solo para lo que ve el público (Tablero); el panel del presentador se
    queda compacto y funcional con la fuente del sistema. */
+/* Fondo inspirado en el set real: paneles saturados azul/rojo detrás del
+   podio, con un viñeteado oscuro al centro para que el tablero y el texto
+   sigan siendo lo más legible de la pantalla. */
 .pantalla-tablero {
   background:
-    repeating-linear-gradient(
-      100deg,
-      rgba(230, 57, 155, 0.07) 0px,
-      rgba(230, 57, 155, 0.07) 40px,
-      rgba(56, 189, 248, 0.07) 40px,
-      rgba(56, 189, 248, 0.07) 80px
-    ),
-    var(--color-bg);
+    radial-gradient(ellipse 70% 65% at center, rgba(7, 7, 15, 0.94) 0%, rgba(7, 7, 15, 0.8) 45%, rgba(7, 7, 15, 0.35) 72%, transparent 100%),
+    repeating-linear-gradient(90deg, #1d4ed8 0px, #1d4ed8 100px, #db2777 100px, #db2777 200px);
 }
 
 .pantalla-tablero h1,
@@ -76,4 +74,14 @@ button {
   font-family: var(--font-led);
   font-variant-numeric: tabular-nums;
   letter-spacing: 1px;
+}
+
+/* Para números aislados (marcador de puntos, strikes, cronómetro) donde
+   la legibilidad a distancia importa más que el look pixelado del panel
+   de respuestas — VT323 dibuja un "0" muy ancho que a tamaño chico se
+   confunde con un blob. */
+.marcador-puntaje {
+  font-family: var(--font-score);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }

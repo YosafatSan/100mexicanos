@@ -7,9 +7,8 @@ export default function TableroRespuestas({ casillas }: { casillas: Casilla[] })
   return (
     <div
       style={{
-        width: 620,
-        maxWidth: "100%",
-        padding: "18px 28px",
+        width: "min(620px, 92vw)",
+        padding: "18px clamp(14px, 4vw, 28px)",
         borderRadius: 10,
         background: "var(--color-panel)",
         border: "6px solid #9ca3af",
@@ -32,7 +31,7 @@ function FilaRespuesta({ numero, casilla }: { numero: number; casilla: Casilla }
         display: "flex",
         alignItems: "baseline",
         gap: 8,
-        fontSize: 28,
+        fontSize: "clamp(16px, 3.4vw, 28px)",
         lineHeight: 1.3,
         color: "var(--color-accent)",
         textShadow: "0 0 6px rgba(255,180,0,0.7)",
@@ -46,7 +45,7 @@ function FilaRespuesta({ numero, casilla }: { numero: number; casilla: Casilla }
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.18, ease: easeOut }}
-            style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+            style={{ minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
           >
             {casilla.respuesta.texto.toUpperCase()}
           </motion.span>

@@ -97,7 +97,7 @@ export default function BoardView() {
       {esResultadoFinal && (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
           <p style={{ opacity: 0.7, letterSpacing: 2, textTransform: "uppercase", margin: 0 }}>Resultado final</p>
-          <h1 style={{ fontSize: 36, margin: 0, maxWidth: 700 }}>{s.mensaje}</h1>
+          <h1 style={{ fontSize: "clamp(22px, 5vw, 36px)", margin: 0, maxWidth: "90vw" }}>{s.mensaje}</h1>
           <p style={{ fontSize: 20, opacity: 0.8, margin: 0 }}>
             {s.dineroRapido.jugador1} + {s.dineroRapido.jugador2} · objetivo {s.reglas.objetivoDineroRapido} pts
           </p>
@@ -116,15 +116,15 @@ export default function BoardView() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
-              style={{ fontSize: 40, margin: 0 }}
+              style={{ fontSize: "clamp(24px, 5.5vw, 40px)", margin: 0, maxWidth: "90vw" }}
             >
               🎉 {s.equipos[s.ganadorRondaPrincipal].nombre} gana la ronda principal con{" "}
               {s.equipos[s.ganadorRondaPrincipal].puntos} puntos
             </motion.h1>
           ) : s.preguntaActual ? (
-            <h1 style={{ fontSize: 32, margin: 0, maxWidth: 900 }}>{s.preguntaActual.texto}</h1>
+            <h1 style={{ fontSize: "clamp(20px, 4.5vw, 32px)", margin: 0, maxWidth: "90vw" }}>{s.preguntaActual.texto}</h1>
           ) : (
-            <h1 style={{ fontSize: 32, margin: 0 }}>{s.mensaje}</h1>
+            <h1 style={{ fontSize: "clamp(20px, 4.5vw, 32px)", margin: 0 }}>{s.mensaje}</h1>
           )}
 
           {(s.fase === "jugando" || s.fase === "robo") && (
@@ -139,14 +139,14 @@ export default function BoardView() {
 
           {s.fase === "finRonda" && <p style={{ fontSize: 24, margin: 0, opacity: 0.9 }}>{s.mensaje}</p>}
 
-          <div style={{ display: "flex", gap: 64 }}>
+          <div style={{ display: "flex", gap: "clamp(24px, 8vw, 64px)" }}>
             {(["equipoA", "equipoB"] as const).map((id) => {
               const equipo = s.equipos[id];
               const enControl = s.equipoEnControl === id;
               return (
                 <div key={id} style={{ opacity: s.equipoEnControl && !enControl ? 0.5 : 1 }}>
-                  <h2 style={{ margin: 0 }}>{equipo.nombre}</h2>
-                  <div style={{ fontSize: 72, fontWeight: 800, color: "var(--color-accent)" }}>
+                  <h2 style={{ margin: 0, fontSize: "clamp(16px, 3vw, 24px)" }}>{equipo.nombre}</h2>
+                  <div style={{ fontSize: "clamp(40px, 10vw, 72px)", fontWeight: 800, color: "var(--color-accent)" }}>
                     <ScoreNumber value={equipo.puntos} />
                   </div>
                 </div>

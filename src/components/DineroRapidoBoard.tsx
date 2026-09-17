@@ -19,13 +19,13 @@ export default function DineroRapidoBoard({ dr }: { dr: EstadoDineroRapido }) {
       <h1 style={{ margin: 0 }}>{jugadorActivoNombre || "…"}</h1>
 
       <motion.div
-        className="marcador-digital"
+        className="marcador-puntaje"
         animate={{ scale: urgente ? [1, 1.08, 1] : 1 }}
         transition={{ duration: 0.6, repeat: urgente ? Infinity : 0, ease: "easeInOut" }}
         style={{
-          fontSize: 96,
+          fontSize: "clamp(56px, 12vw, 96px)",
           color: urgente ? "var(--color-red)" : "var(--color-accent)",
-          textShadow: `0 0 20px ${urgente ? "var(--color-red)" : "rgba(255,180,0,0.7)"}`,
+          textShadow: `0 0 10px ${urgente ? "var(--color-red)" : "rgba(255,180,0,0.7)"}`,
         }}
       >
         {dr.tiempoRestante}
@@ -36,8 +36,8 @@ export default function DineroRapidoBoard({ dr }: { dr: EstadoDineroRapido }) {
           display: "flex",
           flexDirection: "column",
           gap: 4,
-          width: 460,
-          padding: "16px 24px",
+          width: "min(460px, 92vw)",
+          padding: "16px clamp(12px, 4vw, 24px)",
           borderRadius: 10,
           background: "var(--color-panel)",
           border: "6px solid #9ca3af",
@@ -53,7 +53,7 @@ export default function DineroRapidoBoard({ dr }: { dr: EstadoDineroRapido }) {
               display: "flex",
               alignItems: "baseline",
               gap: 8,
-              fontSize: 26,
+              fontSize: "clamp(15px, 3.2vw, 26px)",
               color: "var(--color-accent)",
               textShadow: "0 0 6px rgba(255,180,0,0.7)",
               opacity: r.texto.trim() ? 1 : 0.5,
@@ -65,7 +65,7 @@ export default function DineroRapidoBoard({ dr }: { dr: EstadoDineroRapido }) {
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2, ease: easeOut }}
-              style={{ textTransform: "uppercase" }}
+              style={{ minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", textTransform: "uppercase" }}
             >
               {r.texto || "—"}
             </motion.span>

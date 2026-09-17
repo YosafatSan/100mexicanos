@@ -5,12 +5,12 @@ const easeOut = [0.23, 1, 0.32, 1] as const;
 export default function ScoreNumber({ value }: { value: number }) {
   return (
     <span
-      className="marcador-digital"
+      className="marcador-puntaje"
       style={{
         position: "relative",
         display: "inline-block",
         overflow: "hidden",
-        textShadow: "0 0 18px currentColor",
+        textShadow: "0 0 8px currentColor",
       }}
     >
       <AnimatePresence mode="popLayout" initial={false}>
