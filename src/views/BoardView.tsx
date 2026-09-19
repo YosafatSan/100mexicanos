@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import type { CSSProperties } from "react";
 import { motion } from "framer-motion";
 import { useBoardState } from "../hooks/useBoardState";
 import { useGameSounds } from "../hooks/useGameSounds";
@@ -7,19 +6,11 @@ import { onMessage } from "../lib/channel";
 import { desbloquear, sonidos } from "../lib/sound";
 import ScoreNumber from "../components/ScoreNumber";
 import TableroRespuestas from "../components/TableroRespuestas";
+import PlacadorLateral from "../components/PlacadorLateral";
 import StrikeMarks from "../components/StrikeMarks";
 import StrikeFlash from "../components/StrikeFlash";
 import DineroRapidoBoard from "../components/DineroRapidoBoard";
 import Wordmark from "../components/Wordmark";
-
-const BARRA_ARCOIRIS: CSSProperties = {
-  position: "fixed",
-  left: 0,
-  right: 0,
-  height: 6,
-  background: "var(--arcoiris)",
-  zIndex: 5,
-};
 
 export default function BoardView() {
   const s = useBoardState();
@@ -36,11 +27,9 @@ export default function BoardView() {
 
   if (!s) {
     return (
-      <div style={{ height: "100%", display: "grid", placeItems: "center", gap: 16 }}>
-        <div style={{ ...BARRA_ARCOIRIS, top: 0 }} />
+      <div className="pantalla-tablero" style={{ height: "100%", display: "grid", placeItems: "center", gap: 16 }}>
         <Wordmark size={32} />
         <p style={{ opacity: 0.6 }}>Esperando conexión con el Presentador…</p>
-        <div style={{ ...BARRA_ARCOIRIS, bottom: 0 }} />
       </div>
     );
   }
@@ -48,6 +37,13 @@ export default function BoardView() {
   const esDineroRapido = s.fase === "dineroRapidoSetup" || s.fase === "dineroRapidoJugando";
   const esResultadoFinal = s.fase === "dineroRapidoResultado";
   const esFinJuego = s.fase === "finJuego";
+  const esJugando = s.fase === "jugando" || s.fase === "robo";
+  // El arco se queda en pantalla (con la pregunta anterior ya toda revelada)
+  // entre que termina una ronda y se elige la siguiente — así nadie se
+  // queda con la duda de cuáles eran las respuestas, y no hay un salto
+  // feo a una pantalla de "solo marcadores" de por medio.
+  const mostrarArco = !esFinJuego && (s.preguntaActual !== null || s.casillas.length > 0);
+  const rondaLabel = s.esDesempate ? "Desempate" : `Ronda ${s.numeroRonda}`;
 
   return (
     <div
@@ -87,9 +83,6 @@ export default function BoardView() {
         </button>
       )}
 
-      <div style={{ ...BARRA_ARCOIRIS, top: 0 }} />
-      <div style={{ ...BARRA_ARCOIRIS, bottom: 0 }} />
-
       <StrikeFlash trigger={s.strikes} />
 
       {esDineroRapido && <DineroRapidoBoard dr={s.dineroRapido} />}
@@ -107,7 +100,7 @@ export default function BoardView() {
       {!esDineroRapido && !esResultadoFinal && (
         <>
           <p style={{ opacity: 0.7, letterSpacing: 2, textTransform: "uppercase", margin: 0 }}>
-            {s.esDesempate ? "Desempate" : `Ronda ${s.numeroRonda}`} · x{s.multiplicadorActual}
+            {rondaLabel} · x{s.multiplicadorActual}
           </p>
 
           {esFinJuego && s.ganadorRondaPrincipal ? (
@@ -127,32 +120,55 @@ export default function BoardView() {
             <h1 style={{ fontSize: "clamp(20px, 4.5vw, 32px)", margin: 0 }}>{s.mensaje}</h1>
           )}
 
-          {(s.fase === "jugando" || s.fase === "robo") && (
+          {mostrarArco && (
             <>
-              <TableroRespuestas casillas={s.casillas} />
-              <StrikeMarks strikes={s.strikes} max={s.strikesMax} />
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "clamp(12px, 4vw, 32px)",
+                  flexWrap: "wrap",
+                }}
+              >
+                <PlacadorLateral
+                  nombre={s.equipos.equipoA.nombre}
+                  puntos={s.equipos.equipoA.puntos}
+                  enControl={s.equipoEnControl === "equipoA"}
+                  atenuado={s.equipoEnControl === "equipoB"}
+                />
+                <TableroRespuestas casillas={s.casillas} ronda={rondaLabel} />
+                <PlacadorLateral
+                  nombre={s.equipos.equipoB.nombre}
+                  puntos={s.equipos.equipoB.puntos}
+                  enControl={s.equipoEnControl === "equipoB"}
+                  atenuado={s.equipoEnControl === "equipoA"}
+                />
+              </div>
+              {esJugando && <StrikeMarks strikes={s.strikes} max={s.strikesMax} />}
               {s.fase === "robo" && (
                 <p style={{ color: "var(--color-red)", fontSize: 24, fontWeight: 800, margin: 0 }}>¡ROBO!</p>
               )}
+              {s.fase === "finRonda" && <p style={{ fontSize: 24, margin: 0, opacity: 0.9 }}>{s.mensaje}</p>}
             </>
           )}
 
-          {s.fase === "finRonda" && <p style={{ fontSize: 24, margin: 0, opacity: 0.9 }}>{s.mensaje}</p>}
-
-          <div style={{ display: "flex", gap: "clamp(24px, 8vw, 64px)" }}>
-            {(["equipoA", "equipoB"] as const).map((id) => {
-              const equipo = s.equipos[id];
-              const enControl = s.equipoEnControl === id;
-              return (
-                <div key={id} style={{ opacity: s.equipoEnControl && !enControl ? 0.5 : 1 }}>
-                  <h2 style={{ margin: 0, fontSize: "clamp(16px, 3vw, 24px)" }}>{equipo.nombre}</h2>
-                  <div style={{ fontSize: "clamp(40px, 10vw, 72px)", fontWeight: 800, color: "var(--color-accent)" }}>
-                    <ScoreNumber value={equipo.puntos} />
+          {!mostrarArco && (
+            <div style={{ display: "flex", gap: "clamp(24px, 8vw, 64px)" }}>
+              {(["equipoA", "equipoB"] as const).map((id) => {
+                const equipo = s.equipos[id];
+                const enControl = s.equipoEnControl === id;
+                return (
+                  <div key={id} style={{ opacity: s.equipoEnControl && !enControl ? 0.5 : 1 }}>
+                    <h2 style={{ margin: 0, fontSize: "clamp(16px, 3vw, 24px)" }}>{equipo.nombre}</h2>
+                    <div style={{ fontSize: "clamp(40px, 10vw, 72px)", fontWeight: 800, color: "var(--color-accent)" }}>
+                      <ScoreNumber value={equipo.puntos} />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </>
       )}
     </div>

@@ -21,124 +21,173 @@ export default function PresenterView() {
   } = useGameStore();
 
   return (
-    <div style={{ padding: 24, maxWidth: 780, display: "flex", flexDirection: "column", gap: 20 }}>
-      <header style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
-        <div>
-          <h1 style={{ margin: 0, fontSize: 22 }}>Vista Presentador</h1>
-          <p style={{ opacity: 0.7, margin: "4px 0 0" }}>
-            {s.esDesempate ? "Ronda de desempate" : `Ronda ${s.numeroRonda}`} · multiplicador x{s.multiplicadorActual} · strikes máx {s.strikesMax}
-          </p>
-        </div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          <button
-            onClick={() => window.open(`${window.location.origin}/#/tablero`, "tablero-100mx")}
-            title="Abre (o enfoca) la vista Tablero en otra ventana — muévela a tu segundo monitor/proyector"
-          >
-            🖥️ Abrir Tablero
-          </button>
-          <button onClick={() => enviarSfx("redoble")} title="Suena solo en el Tablero">
-            🥁 Redoble
-          </button>
-          <button onClick={() => enviarSfx("aplausos")} title="Suena solo en el Tablero">
-            👏 Aplausos
-          </button>
-          <button onClick={deshacer} disabled={historial.length === 0}>
-            Deshacer
-          </button>
-          <button onClick={reiniciarPartida}>Reiniciar partida</button>
-        </div>
-      </header>
-
-      <section style={{ display: "flex", gap: 16 }}>
-        {(["equipoA", "equipoB"] as const).map((id) => (
-          <div key={id} style={{ border: "1px solid #333", borderRadius: 8, padding: 12, flex: 1 }}>
-            <input
-              value={s.equipos[id].nombre}
-              onChange={(e) => setNombreEquipo(id, e.target.value)}
-              style={{ fontWeight: 700, marginBottom: 6, width: "100%" }}
-            />
-            <p style={{ fontSize: 28, margin: 0 }}>{s.equipos[id].puntos} pts</p>
-            {s.equipoEnControl === id && <p style={{ color: "#ffcc00", margin: "4px 0 0" }}>En control</p>}
+    <div className="panel-presentador">
+      <div style={{ maxWidth: 820, margin: "0 auto", padding: 24, display: "flex", flexDirection: "column", gap: 18 }}>
+        <header style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+          <div>
+            <h1 style={{ margin: 0, fontSize: 20, fontWeight: 800 }}>Vista Presentador</h1>
+            <p style={{ color: "var(--pv-text-dim)", margin: "4px 0 0", fontSize: 13 }}>
+              {s.esDesempate ? "Ronda de desempate" : `Ronda ${s.numeroRonda}`} · multiplicador x{s.multiplicadorActual} · strikes máx{" "}
+              {s.strikesMax}
+            </p>
           </div>
-        ))}
-      </section>
-
-      <p style={{ background: "#14142a", padding: 12, borderRadius: 8 }}>{s.mensaje}</p>
-
-      {s.fase === "seleccionPregunta" && <BancoEditor />}
-
-      {s.fase === "faceoff" && s.preguntaActual && (
-        <div>
-          <h3>{s.preguntaActual.texto}</h3>
-          <div style={{ display: "flex", gap: 8 }}>
-            <button onClick={() => ganarFaceOff("equipoA")}>{s.equipos.equipoA.nombre} gana el control</button>
-            <button onClick={() => ganarFaceOff("equipoB")}>{s.equipos.equipoB.nombre} gana el control</button>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            <button
+              className="pv-btn pv-btn-primary"
+              onClick={() => window.open(`${window.location.origin}/#/tablero`, "tablero-100mx")}
+              title="Abre (o enfoca) la vista Tablero en otra ventana — muévela a tu segundo monitor/proyector"
+            >
+              🖥️ Abrir Tablero
+            </button>
+            <button className="pv-btn" onClick={() => enviarSfx("redoble")} title="Suena solo en el Tablero">
+              🥁 Redoble
+            </button>
+            <button className="pv-btn" onClick={() => enviarSfx("aplausos")} title="Suena solo en el Tablero">
+              👏 Aplausos
+            </button>
+            <button className="pv-btn" onClick={deshacer} disabled={historial.length === 0}>
+              ↩️ Deshacer
+            </button>
+            <button className="pv-btn pv-btn-danger" onClick={reiniciarPartida}>
+              Reiniciar partida
+            </button>
           </div>
-          <VistaPreviaCasillas casillas={s.casillas} />
-        </div>
-      )}
+        </header>
 
-      {s.fase === "jugando" && (
-        <div>
-          <h3>{s.preguntaActual?.texto}</h3>
-          <p>
-            Strikes: {"✗".repeat(s.strikes)}
-            {"·".repeat(Math.max(0, s.strikesMax - s.strikes))}
-          </p>
-          <CasillasPresenter casillas={s.casillas} onRevelar={revelarCasilla} />
-          <button onClick={marcarStrike} style={{ marginTop: 12 }}>
-            Marcar strike
-          </button>
-        </div>
-      )}
+        <section style={{ display: "flex", gap: 14 }}>
+          {(["equipoA", "equipoB"] as const).map((id) => (
+            <div key={id} className={`pv-team-card${s.equipoEnControl === id ? " en-control" : ""}`}>
+              <input
+                className="pv-team-name-input"
+                value={s.equipos[id].nombre}
+                onChange={(e) => setNombreEquipo(id, e.target.value)}
+              />
+              <p className="pv-team-score marcador-puntaje">{s.equipos[id].puntos}</p>
+              {s.equipoEnControl === id && (
+                <p style={{ color: "var(--pv-accent)", margin: "6px 0 0", fontSize: 12, fontWeight: 700 }}>EN CONTROL</p>
+              )}
+            </div>
+          ))}
+        </section>
 
-      {s.fase === "robo" && (
-        <div>
-          <h3>Robo — {s.preguntaActual?.texto}</h3>
-          <p>Respuestas restantes (elige la que digan, o marca robo fallido):</p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            {s.casillas.map(
-              (c, i) =>
-                !c.revelada && (
-                  <button key={i} onClick={() => resolverRobo(true, i)}>
-                    Acertó: {c.respuesta.texto} ({c.respuesta.puntos})
-                  </button>
-                ),
-            )}
+        <p className="pv-callout" style={{ margin: 0 }}>
+          {s.mensaje}
+        </p>
+
+        {s.fase === "seleccionPregunta" && <BancoEditor />}
+
+        {s.fase === "faceoff" && s.preguntaActual && (
+          <div className="pv-card">
+            <p className="pv-card-title">Face-off</p>
+            <h3 style={{ margin: "0 0 14px" }}>{s.preguntaActual.texto}</h3>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <button
+                className="pv-btn pv-btn-primary"
+                style={{ flex: "1 1 180px", minWidth: 0, justifyContent: "center", padding: "14px", whiteSpace: "normal", textAlign: "center" }}
+                onClick={() => ganarFaceOff("equipoA")}
+              >
+                {s.equipos.equipoA.nombre} gana el control
+              </button>
+              <button
+                className="pv-btn pv-btn-primary"
+                style={{ flex: "1 1 180px", minWidth: 0, justifyContent: "center", padding: "14px", whiteSpace: "normal", textAlign: "center" }}
+                onClick={() => ganarFaceOff("equipoB")}
+              >
+                {s.equipos.equipoB.nombre} gana el control
+              </button>
+            </div>
+            <VistaPreviaCasillas casillas={s.casillas} />
           </div>
-          <button onClick={() => resolverRobo(false)} style={{ marginTop: 12 }}>
-            Robo fallido
+        )}
+
+        {s.fase === "jugando" && (
+          <div className="pv-card">
+            <p className="pv-card-title">En juego</p>
+            <h3 style={{ margin: "0 0 10px" }}>{s.preguntaActual?.texto}</h3>
+            <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
+              {Array.from({ length: s.strikesMax }).map((_, i) => (
+                <span
+                  key={i}
+                  style={{
+                    width: 28,
+                    height: 28,
+                    borderRadius: 6,
+                    display: "grid",
+                    placeItems: "center",
+                    fontWeight: 800,
+                    fontSize: 14,
+                    background: i < s.strikes ? "rgba(239,68,68,0.18)" : "var(--pv-surface-2)",
+                    border: `1px solid ${i < s.strikes ? "var(--pv-danger)" : "var(--pv-border)"}`,
+                    color: i < s.strikes ? "var(--pv-danger)" : "var(--pv-text-dim)",
+                  }}
+                >
+                  X
+                </span>
+              ))}
+            </div>
+            <CasillasPresenter casillas={s.casillas} onRevelar={revelarCasilla} />
+            <button className="pv-btn pv-btn-danger pv-btn-block" style={{ marginTop: 14 }} onClick={marcarStrike}>
+              Marcar strike
+            </button>
+          </div>
+        )}
+
+        {s.fase === "robo" && (
+          <div className="pv-card">
+            <p className="pv-card-title">Robo</p>
+            <h3 style={{ margin: "0 0 10px" }}>{s.preguntaActual?.texto}</h3>
+            <p style={{ color: "var(--pv-text-dim)", fontSize: 13, margin: "0 0 10px" }}>
+              Elige la respuesta que dieron, o marca robo fallido:
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {s.casillas.map(
+                (c, i) =>
+                  !c.revelada && (
+                    <button key={i} className="pv-btn" style={{ justifyContent: "space-between" }} onClick={() => resolverRobo(true, i)}>
+                      <span>{c.respuesta.texto}</span>
+                      <span style={{ color: "var(--pv-accent)" }}>{c.respuesta.puntos}</span>
+                    </button>
+                  ),
+              )}
+            </div>
+            <button className="pv-btn pv-btn-danger pv-btn-block" style={{ marginTop: 14 }} onClick={() => resolverRobo(false)}>
+              Robo fallido
+            </button>
+          </div>
+        )}
+
+        {s.fase === "finRonda" && (
+          <button className="pv-btn pv-btn-primary pv-btn-block" onClick={siguienteRonda}>
+            Siguiente ronda →
           </button>
-        </div>
-      )}
+        )}
 
-      {s.fase === "finRonda" && <button onClick={siguienteRonda}>Siguiente ronda</button>}
+        {s.fase === "finJuego" && s.ganadorRondaPrincipal && (
+          <IniciarDineroRapido
+            nombreEquipo={s.equipos[s.ganadorRondaPrincipal].nombre}
+            jugadoresSugeridos={s.equipos[s.ganadorRondaPrincipal].jugadores.map((j) => j.nombre)}
+            onIniciar={irADineroRapido}
+          />
+        )}
 
-      {s.fase === "finJuego" && s.ganadorRondaPrincipal && (
-        <IniciarDineroRapido
-          nombreEquipo={s.equipos[s.ganadorRondaPrincipal].nombre}
-          jugadoresSugeridos={s.equipos[s.ganadorRondaPrincipal].jugadores.map((j) => j.nombre)}
-          onIniciar={irADineroRapido}
-        />
-      )}
+        {(s.fase === "dineroRapidoSetup" || s.fase === "dineroRapidoJugando") && <DineroRapidoPanel />}
 
-      {(s.fase === "dineroRapidoSetup" || s.fase === "dineroRapidoJugando") && <DineroRapidoPanel />}
-
-      {s.fase === "dineroRapidoResultado" && (
-        <div>
-          <h2>{s.mensaje}</h2>
-          <p>
-            Jugador 1 ({s.dineroRapido.jugador1}): suma parcial —{" "}
-            {s.dineroRapido.respuestasJugador1.reduce((a, r) => a + r.puntos, 0)}
-          </p>
-          <p>
-            Jugador 2 ({s.dineroRapido.jugador2}): suma parcial —{" "}
-            {s.dineroRapido.respuestasJugador2.reduce((a, r) => a + r.puntos, 0)}
-          </p>
-          <p style={{ fontWeight: 700 }}>Total combinado: {totalCombinado(s.dineroRapido)}</p>
-          <button onClick={reiniciarPartida}>Nueva partida</button>
-        </div>
-      )}
+        {s.fase === "dineroRapidoResultado" && (
+          <div className="pv-card">
+            <h2 style={{ margin: "0 0 10px" }}>{s.mensaje}</h2>
+            <p style={{ color: "var(--pv-text-dim)", margin: "0 0 4px" }}>
+              Jugador 1 ({s.dineroRapido.jugador1}): {s.dineroRapido.respuestasJugador1.reduce((a, r) => a + r.puntos, 0)}
+            </p>
+            <p style={{ color: "var(--pv-text-dim)", margin: 0 }}>
+              Jugador 2 ({s.dineroRapido.jugador2}): {s.dineroRapido.respuestasJugador2.reduce((a, r) => a + r.puntos, 0)}
+            </p>
+            <p style={{ fontWeight: 700, margin: "10px 0 16px" }}>Total combinado: {totalCombinado(s.dineroRapido)}</p>
+            <button className="pv-btn pv-btn-primary pv-btn-block" onClick={reiniciarPartida}>
+              Nueva partida
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -156,14 +205,14 @@ function IniciarDineroRapido({
   const [j2, setJ2] = useState(jugadoresSugeridos[1] ?? "");
 
   return (
-    <div>
-      <h2>{nombreEquipo} gana la ronda principal 🎉</h2>
-      <p>Elige a los 2 jugadores para Dinero Rápido:</p>
-      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-        <input placeholder="Jugador 1 (15s)" value={j1} onChange={(e) => setJ1(e.target.value)} />
-        <input placeholder="Jugador 2 (20s)" value={j2} onChange={(e) => setJ2(e.target.value)} />
+    <div className="pv-card">
+      <h2 style={{ margin: "0 0 4px" }}>🎉 {nombreEquipo} gana la ronda principal</h2>
+      <p style={{ color: "var(--pv-text-dim)", margin: "0 0 14px" }}>Elige a los 2 jugadores para Dinero Rápido:</p>
+      <div style={{ display: "flex", gap: 10, marginBottom: 14 }}>
+        <input className="pv-input" style={{ flex: 1, minWidth: 0 }} placeholder="Jugador 1 (15s)" value={j1} onChange={(e) => setJ1(e.target.value)} />
+        <input className="pv-input" style={{ flex: 1, minWidth: 0 }} placeholder="Jugador 2 (20s)" value={j2} onChange={(e) => setJ2(e.target.value)} />
       </div>
-      <button onClick={() => onIniciar(j1, j2)} disabled={!j1.trim() || !j2.trim()}>
+      <button className="pv-btn pv-btn-primary pv-btn-block" onClick={() => onIniciar(j1, j2)} disabled={!j1.trim() || !j2.trim()}>
         Ir a Dinero Rápido
       </button>
     </div>
@@ -172,15 +221,18 @@ function IniciarDineroRapido({
 
 function VistaPreviaCasillas({ casillas }: { casillas: { respuesta: { texto: string; puntos: number } }[] }) {
   return (
-    <div style={{ marginTop: 12, fontSize: 14, opacity: 0.8 }}>
-      <p>Respuestas (solo tú las ves):</p>
-      <ol>
+    <div style={{ marginTop: 16 }}>
+      <p className="pv-card-title">Respuestas (solo tú las ves)</p>
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
         {casillas.map((c, i) => (
-          <li key={i}>
-            {c.respuesta.texto} — {c.respuesta.puntos}
-          </li>
+          <div key={i} className="pv-row" style={{ fontSize: 13 }}>
+            <span>
+              {i + 1}. {c.respuesta.texto}
+            </span>
+            <span style={{ color: "var(--pv-accent)" }}>{c.respuesta.puntos}</span>
+          </div>
         ))}
-      </ol>
+      </div>
     </div>
   );
 }
@@ -193,21 +245,26 @@ function CasillasPresenter({
   onRevelar: (i: number) => void;
 }) {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 12 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       {casillas.map((c, i) => (
         <button
           key={i}
           onClick={() => onRevelar(i)}
           disabled={c.revelada}
-          style={{
-            padding: 10,
-            textAlign: "left",
-            background: c.revelada ? "#1f4d2b" : "#1a1a2e",
-          }}
+          className={`pv-row${c.revelada ? " pv-row-revelada" : ""}`}
+          style={{ width: "100%", textAlign: "left", cursor: c.revelada ? "default" : "pointer" }}
         >
-          {c.revelada
-            ? `${c.respuesta.texto} — ${c.respuesta.puntos}`
-            : `${i + 1}. ${c.respuesta.texto} (${c.respuesta.puntos}) — revelar`}
+          <span>
+            {i + 1}. {c.respuesta.texto}
+          </span>
+          <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <span style={{ color: "var(--pv-accent)" }}>{c.respuesta.puntos}</span>
+            {c.revelada ? (
+              <span style={{ color: "var(--pv-success)", fontSize: 12, fontWeight: 700 }}>✓ REVELADA</span>
+            ) : (
+              <span style={{ color: "var(--pv-text-dim)", fontSize: 12 }}>Revelar</span>
+            )}
+          </span>
         </button>
       ))}
     </div>

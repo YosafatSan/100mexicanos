@@ -31,48 +31,37 @@ export default function DineroRapidoBoard({ dr }: { dr: EstadoDineroRapido }) {
         {dr.tiempoRestante}
       </motion.div>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 4,
-          width: "min(460px, 92vw)",
-          padding: "16px clamp(12px, 4vw, 24px)",
-          borderRadius: 10,
-          background: "var(--color-panel)",
-          border: "6px solid #9ca3af",
-          borderImage: "linear-gradient(160deg, #f3f4f6, #6b7280 40%, #374151) 1",
-          boxShadow: "0 0 0 3px #111827 inset, 0 0 0 6px var(--color-neon-blue), 0 0 26px 4px rgba(56,189,248,0.55)",
-        }}
-      >
-        {respuestas.map((r, i) => (
-          <div
-            key={i}
-            className="marcador-digital"
-            style={{
-              display: "flex",
-              alignItems: "baseline",
-              gap: 8,
-              fontSize: "clamp(15px, 3.2vw, 26px)",
-              color: "var(--color-accent)",
-              textShadow: "0 0 6px rgba(255,180,0,0.7)",
-              opacity: r.texto.trim() ? 1 : 0.5,
-            }}
-          >
-            <span style={{ minWidth: 18 }}>{i + 1}.</span>
-            <motion.span
-              key={r.texto}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2, ease: easeOut }}
-              style={{ minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", textTransform: "uppercase" }}
+      <div className="marco-feud">
+        <div className="anillo-azul" style={{ display: "flex", flexDirection: "column", gap: 4, width: "min(460px, 88vw)" }}>
+          {respuestas.map((r, i) => (
+            <div
+              key={i}
+              className="marcador-digital"
+              style={{
+                display: "flex",
+                alignItems: "baseline",
+                gap: 8,
+                fontSize: "clamp(15px, 3.2vw, 26px)",
+                color: "var(--color-accent)",
+                textShadow: "0 0 6px rgba(255,180,0,0.7)",
+                opacity: r.texto.trim() ? 1 : 0.5,
+              }}
             >
-              {r.texto || "—"}
-            </motion.span>
-            <span style={{ flex: 1, minWidth: 12, borderBottom: "3px dotted currentColor", opacity: 0.35, marginBottom: 6 }} />
-            <span style={{ minWidth: 30, textAlign: "right" }}>{r.texto.trim() ? r.puntos : ""}</span>
-          </div>
-        ))}
+              <span style={{ minWidth: 18 }}>{i + 1}.</span>
+              <motion.span
+                key={r.texto}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2, ease: easeOut }}
+                style={{ minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", textTransform: "uppercase" }}
+              >
+                {r.texto || "—"}
+              </motion.span>
+              <span style={{ flex: 1, minWidth: 12, borderBottom: "3px dotted currentColor", opacity: 0.35, marginBottom: 6 }} />
+              <span style={{ minWidth: 30, textAlign: "right" }}>{r.texto.trim() ? r.puntos : ""}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       <p style={{ fontSize: 28, margin: 0 }}>

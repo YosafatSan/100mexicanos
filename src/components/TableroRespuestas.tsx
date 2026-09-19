@@ -1,24 +1,20 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { Casilla } from "../types";
 
 const easeOut = [0.23, 1, 0.32, 1] as const;
 
-export default function TableroRespuestas({ casillas }: { casillas: Casilla[] }) {
+export default function TableroRespuestas({ casillas, ronda }: { casillas: Casilla[]; ronda: string }) {
   return (
-    <div
-      style={{
-        width: "min(620px, 92vw)",
-        padding: "18px clamp(14px, 4vw, 28px)",
-        borderRadius: 10,
-        background: "var(--color-panel)",
-        border: "6px solid #9ca3af",
-        borderImage: "linear-gradient(160deg, #f3f4f6, #6b7280 40%, #374151) 1",
-        boxShadow: "0 0 0 3px #111827 inset, 0 0 0 6px var(--color-neon-blue), 0 0 26px 4px rgba(56,189,248,0.55)",
-      }}
-    >
-      {casillas.map((c, i) => (
-        <FilaRespuesta key={i} numero={i + 1} casilla={c} />
-      ))}
+    <div className="marco-feud">
+      <div
+        className="anillo-azul"
+        style={{ width: "min(620px, 88vw)" }}
+      >
+        {casillas.map((c, i) => (
+          <FilaRespuesta key={i} numero={i + 1} casilla={c} />
+        ))}
+      </div>
+      <span className="pill-ronda">{ronda}</span>
     </div>
   );
 }
@@ -38,31 +34,27 @@ function FilaRespuesta({ numero, casilla }: { numero: number; casilla: Casilla }
       }}
     >
       <span style={{ minWidth: 22 }}>{numero}.</span>
-      <AnimatePresence mode="popLayout" initial={false}>
-        {casilla.revelada && (
-          <motion.span
-            key="texto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.18, ease: easeOut }}
-            style={{ minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
-          >
-            {casilla.respuesta.texto.toUpperCase()}
-          </motion.span>
-        )}
-      </AnimatePresence>
-      <span style={{ flex: 1, minWidth: 16, borderBottom: "3px dotted currentColor", opacity: 0.35, marginBottom: 7 }} />
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={casilla.revelada ? "pts" : "vacio"}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.18, ease: easeOut }}
-          style={{ minWidth: 34, textAlign: "right" }}
+      {casilla.revelada ? (
+        // Aparece de izquierda a derecha (wipe), como si se "destapara" la respuesta.
+        <motion.div
+          key="on"
+          initial={{ clipPath: "inset(0 100% 0 0)" }}
+          animate={{ clipPath: "inset(0 0% 0 0)" }}
+          transition={{ duration: 0.5, ease: easeOut }}
+          style={{ display: "flex", alignItems: "baseline", gap: 8, flex: 1, minWidth: 0 }}
         >
-          {casilla.revelada ? casilla.respuesta.puntos : "—"}
-        </motion.span>
-      </AnimatePresence>
+          <span style={{ minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            {casilla.respuesta.texto.toUpperCase()}
+          </span>
+          <span style={{ flex: 1, minWidth: 16, borderBottom: "3px dotted currentColor", opacity: 0.35, marginBottom: 7 }} />
+          <span style={{ minWidth: 34, textAlign: "right" }}>{casilla.respuesta.puntos}</span>
+        </motion.div>
+      ) : (
+        <div style={{ display: "flex", alignItems: "baseline", gap: 8, flex: 1, minWidth: 0 }}>
+          <span style={{ flex: 1, minWidth: 16, borderBottom: "3px dotted currentColor", opacity: 0.35, marginBottom: 7 }} />
+          <span style={{ minWidth: 34, textAlign: "right" }}>—</span>
+        </div>
+      )}
     </div>
   );
 }

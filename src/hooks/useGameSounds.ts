@@ -24,7 +24,15 @@ export function useGameSounds(estado: EstadoJuego | null, activo: boolean) {
     if (estado.fase === "faceoff" && prev.fase === "seleccionPregunta") sonidos.empezar();
     if (estado.fase === "jugando" && prev.fase === "faceoff") sonidos.campana();
     if (estado.fase === "robo" && prev.fase !== "robo") sonidos.tension();
-    if (estado.fase === "finRonda" && prev.fase !== "finRonda") sonidos.fanfarria();
+
+    // Barrieron el tablero completo (todas las respuestas, sin robo de por medio)
+    // -> el clip real de triunfo. Si la ronda terminó por robo, se queda con la
+    // fanfarria sintetizada (no es el mismo logro).
+    const barridoCompleto = prev.fase === "jugando" && estado.casillas.length > 0 && estado.casillas.every((c) => c.revelada);
+    if (estado.fase === "finRonda" && prev.fase !== "finRonda") {
+      if (barridoCompleto) sonidos.victoria();
+      else sonidos.fanfarria();
+    }
     if (estado.fase === "finJuego" && prev.fase !== "finJuego") sonidos.victoria();
 
     const dr = estado.dineroRapido;

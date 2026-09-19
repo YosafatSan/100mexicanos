@@ -135,6 +135,9 @@ export const useGameStore = create<GameStore>((set, get) => {
     return {
       ...estado,
       equipos,
+      // Se revela todo lo que haya quedado oculto (p. ej. tras un robo) para
+      // que el público no se quede con la duda de cuáles eran las respuestas.
+      casillas: estado.casillas.map((c) => ({ ...c, revelada: true })),
       fase: gano ? "finJuego" : "finRonda",
       ganadorRondaPrincipal: gano ? equipo : null,
       mensaje: gano
@@ -278,8 +281,10 @@ export const useGameStore = create<GameStore>((set, get) => {
             : 1,
           strikesMax: esDesempate ? s.reglas.strikesDesempate : s.reglas.strikesMaximos,
           fase: "seleccionPregunta",
-          preguntaActual: null,
-          casillas: [],
+          // preguntaActual y casillas NO se limpian aquí a propósito: el
+          // tablero se queda mostrando la pregunta anterior (ya toda
+          // revelada) hasta que se elija la siguiente, en vez de saltar a
+          // una pantalla de marcadores vacía de por medio.
           equipoEnControl: null,
           strikes: 0,
           puntosAcumuladosRonda: 0,

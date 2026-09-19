@@ -8,6 +8,21 @@
   --color-border: #2a2a45;
   --color-magenta: #e6399b;
 
+  /* Paleta del panel de control del Presentador (herramienta funcional,
+     no la pantalla que ve el público). */
+  --pv-bg: #0b0d14;
+  --pv-surface: #12151f;
+  --pv-surface-2: #1a1e2c;
+  --pv-border: #262b3a;
+  --pv-text: #e7e9ee;
+  --pv-text-dim: #8b93a7;
+  --pv-primary: #3b82f6;
+  --pv-primary-hover: #2f6fdb;
+  --pv-accent: #f5b800;
+  --pv-danger: #ef4444;
+  --pv-danger-hover: #dc2626;
+  --pv-success: #22c55e;
+
   --font-display: "Baloo 2", "Segoe UI", system-ui, sans-serif;
   --font-led: "VT323", "Consolas", monospace;
   --font-score: "Chakra Petch", "Consolas", monospace;
@@ -50,19 +65,70 @@ a {
 /* El look "programa de TV" (fuente redondeada + panel tipo terminal LED)
    es solo para lo que ve el público (Tablero); el panel del presentador se
    queda compacto y funcional con la fuente del sistema. */
-/* Fondo inspirado en el set real: paneles saturados azul/rojo detrás del
-   podio, con un viñeteado oscuro al centro para que el tablero y el texto
-   sigan siendo lo más legible de la pantalla. */
 .pantalla-tablero {
-  background:
-    radial-gradient(ellipse 70% 65% at center, rgba(7, 7, 15, 0.94) 0%, rgba(7, 7, 15, 0.8) 45%, rgba(7, 7, 15, 0.35) 72%, transparent 100%),
-    repeating-linear-gradient(90deg, #1d4ed8 0px, #1d4ed8 100px, #db2777 100px, #db2777 200px);
+  background: radial-gradient(ellipse 80% 70% at center, #1a1a2e 0%, #0a0a14 60%, #050508 100%);
 }
 
 .pantalla-tablero h1,
 .pantalla-tablero h2 {
   font-family: var(--font-display);
   font-weight: 800;
+}
+
+/* Marco tipo "letrero de foquitos" (referencia: tablero clásico de Family
+   Feud) — anillo naranja con textura de bulbos, luego un anillo azul
+   neón, y adentro el panel negro de respuestas. */
+.marco-feud {
+  position: relative;
+  padding: 16px;
+  border-radius: 36px;
+  background:
+    radial-gradient(circle, rgba(255, 240, 200, 0.95) 0 2.5px, rgba(255, 200, 60, 0.5) 3px 4.5px, transparent 5px),
+    linear-gradient(155deg, #ffcc4d 0%, #fb9a2b 45%, #e6740f 100%);
+  background-size: 20px 20px, 100% 100%;
+  box-shadow:
+    0 0 0 4px #7a3d00,
+    0 12px 28px rgba(0, 0, 0, 0.65);
+}
+
+.anillo-azul {
+  border-radius: 24px;
+  border: 5px solid #2563eb;
+  background: #000;
+  box-shadow:
+    0 0 0 3px #0b1140 inset,
+    0 0 4px 2px #93c5fd inset,
+    0 0 20px 4px rgba(37, 99, 235, 0.85);
+  padding: 20px clamp(14px, 4vw, 28px);
+}
+
+.pill-ronda {
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  transform: translateX(-50%);
+  background: linear-gradient(160deg, #ffe27a, #d4a017);
+  color: #241a00;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  padding: 6px 22px;
+  border-radius: 999px;
+  border: 3px solid #7a5200;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.placador-lateral {
+  background: #000;
+  border: 4px solid #2563eb;
+  border-radius: 12px;
+  box-shadow:
+    0 0 3px 1px #93c5fd inset,
+    0 0 16px 3px rgba(37, 99, 235, 0.75);
+  padding: 10px 18px;
+  text-align: center;
+  min-width: 90px;
 }
 
 input,
@@ -84,4 +150,232 @@ button {
   font-family: var(--font-score);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+}
+
+/* ============ Panel de control del Presentador ============ */
+
+.panel-presentador {
+  min-height: 100%;
+  background: var(--pv-bg);
+  color: var(--pv-text);
+}
+
+.panel-presentador * {
+  box-sizing: border-box;
+}
+
+.pv-card {
+  background: var(--pv-surface);
+  border: 1px solid var(--pv-border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.pv-card-title {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--pv-text-dim);
+}
+
+.pv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 9px;
+  border: 1px solid var(--pv-border);
+  background: var(--pv-surface-2);
+  color: var(--pv-text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease, transform 80ms ease;
+  white-space: nowrap;
+}
+
+.pv-btn:hover:not(:disabled) {
+  background: #232838;
+  border-color: #333a4d;
+}
+
+.pv-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.pv-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pv-btn-primary {
+  background: var(--pv-primary);
+  border-color: var(--pv-primary);
+  color: #fff;
+}
+
+.pv-btn-primary:hover:not(:disabled) {
+  background: var(--pv-primary-hover);
+  border-color: var(--pv-primary-hover);
+}
+
+.pv-btn-danger {
+  background: transparent;
+  border-color: var(--pv-danger);
+  color: var(--pv-danger);
+}
+
+.pv-btn-danger:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.pv-btn-block {
+  width: 100%;
+  justify-content: center;
+  padding: 12px 16px;
+  font-size: 15px;
+}
+
+.pv-input {
+  padding: 9px 12px;
+  border-radius: 9px;
+  border: 1px solid var(--pv-border);
+  background: var(--pv-surface-2);
+  color: var(--pv-text);
+  font-size: 14px;
+}
+
+.pv-input:focus {
+  outline: 2px solid var(--pv-primary);
+  outline-offset: 1px;
+}
+
+.pv-input::placeholder {
+  color: var(--pv-text-dim);
+}
+
+.pv-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border);
+  font-size: 12px;
+  color: var(--pv-text-dim);
+}
+
+.pv-callout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--pv-surface);
+  border: 1px solid var(--pv-border);
+  border-left: 4px solid var(--pv-primary);
+  font-size: 14px;
+}
+
+.pv-team-card {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--pv-border);
+  border-radius: 14px;
+  padding: 16px;
+  background: var(--pv-surface);
+  text-align: center;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.pv-team-card.en-control {
+  border-color: var(--pv-accent);
+  box-shadow: 0 0 0 1px var(--pv-accent), 0 0 16px rgba(245, 184, 0, 0.25);
+}
+
+.pv-team-name-input {
+  width: 100%;
+  text-align: center;
+  font-size: clamp(12px, 3.6vw, 16px);
+  font-weight: 700;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 6px 4px;
+  color: var(--pv-text);
+  min-width: 0;
+}
+
+.pv-team-name-input:hover {
+  border-color: var(--pv-border);
+}
+
+.pv-team-name-input:focus {
+  border-color: var(--pv-primary);
+  outline: none;
+  background: var(--pv-surface-2);
+}
+
+.pv-team-score {
+  font-family: var(--font-score);
+  font-weight: 700;
+  font-size: 36px;
+  margin: 6px 0 0;
+}
+
+.pv-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--pv-border);
+  background: var(--pv-surface-2);
+}
+
+.pv-row-revelada {
+  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.pv-collapsible {
+  border: 1px solid var(--pv-border);
+  border-radius: 10px;
+  background: var(--pv-surface-2);
+  overflow: hidden;
+}
+
+.pv-collapsible > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.pv-collapsible > summary::-webkit-details-marker {
+  display: none;
+}
+
+.pv-collapsible > summary::before {
+  content: "▸";
+  color: var(--pv-text-dim);
+  transition: transform 150ms ease;
+}
+
+.pv-collapsible[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.pv-collapsible > summary:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.pv-collapsible-body {
+  padding: 4px 14px 14px;
+  border-top: 1px solid var(--pv-border);
 }
