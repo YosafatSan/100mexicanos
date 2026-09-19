@@ -47,7 +47,7 @@ export default function PresenterView() {
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
             <button
               className="pv-btn pv-btn-primary"
-              onClick={() => window.open(`${window.location.origin}/#/tablero`, "tablero-100mx")}
+              onClick={() => window.open(`${window.location.origin}${import.meta.env.BASE_URL}#/tablero`, "tablero-100mx")}
               title="Abre (o enfoca) la vista Tablero en otra ventana — muévela a tu segundo monitor/proyector"
             >
               🖥️ Abrir Tablero

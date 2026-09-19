@@ -1,7 +1,7 @@
 import Wordmark from "../components/Wordmark";
 
 function abrir(ruta: string, nombre: string) {
-  window.open(`${window.location.origin}/#${ruta}`, nombre);
+  window.open(`${window.location.origin}${import.meta.env.BASE_URL}#${ruta}`, nombre);
 }
 
 const botonEstilo = {

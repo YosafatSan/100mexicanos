@@ -20,7 +20,7 @@ const clips = new Map<NombreClip, HTMLAudioElement>();
 function clip(nombre: NombreClip): HTMLAudioElement {
   let audio = clips.get(nombre);
   if (!audio) {
-    audio = new Audio(`/sonidos/${nombre}.mp3`);
+    audio = new Audio(`${import.meta.env.BASE_URL}sonidos/${nombre}.mp3`);
     audio.preload = "auto";
     clips.set(nombre, audio);
   }
