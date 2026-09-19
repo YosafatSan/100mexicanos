@@ -11,6 +11,9 @@ export default function PresenterView() {
   const {
     deshacer,
     reiniciarPartida,
+    nuevaPartida,
+    comenzarPartida,
+    agregarRondaExtra,
     ganarFaceOff,
     revelarCasilla,
     marcarStrike,
@@ -31,8 +34,14 @@ export default function PresenterView() {
           <div>
             <h1 style={{ margin: 0, fontSize: 20, fontWeight: 800 }}>Vista Presentador</h1>
             <p style={{ color: "var(--pv-text-dim)", margin: "4px 0 0", fontSize: 13 }}>
-              {s.esDesempate ? "Ronda de desempate" : `Ronda ${s.numeroRonda}`} · multiplicador x{s.multiplicadorActual} · strikes máx{" "}
-              {s.strikesMax}
+              {s.fase === "configuracion"
+                ? "Configurando partida"
+                : s.fase === "finJuego"
+                  ? "Partida terminada"
+                  : s.esDesempate
+                    ? "Ronda extra (desempate)"
+                    : `Ronda ${s.numeroRonda} de ${s.reglas.numeroRondas}`}{" "}
+              · multiplicador x{s.multiplicadorActual} · strikes máx {s.strikesMax}
             </p>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
@@ -52,8 +61,12 @@ export default function PresenterView() {
             <button className="pv-btn" onClick={deshacer} disabled={historial.length === 0}>
               ↩️ Deshacer
             </button>
-            <button className="pv-btn pv-btn-danger" onClick={reiniciarPartida}>
-              Reiniciar partida
+            <button
+              className="pv-btn pv-btn-danger"
+              onClick={reiniciarPartida}
+              title="Reinicia marcador, rondas Y desmarca todas las preguntas del banco"
+            >
+              Reiniciar todo
             </button>
           </div>
         </header>
@@ -77,6 +90,10 @@ export default function PresenterView() {
         <p className="pv-callout" style={{ margin: 0 }}>
           {s.mensaje}
         </p>
+
+        {s.fase === "configuracion" && (
+          <ConfiguracionPartida numeroRondasInicial={s.reglas.numeroRondas} onComenzar={comenzarPartida} />
+        )}
 
         {s.fase === "seleccionPregunta" && <BancoEditor />}
 
@@ -179,12 +196,25 @@ export default function PresenterView() {
           </button>
         )}
 
-        {s.fase === "finJuego" && s.ganadorRondaPrincipal && (
-          <IniciarDineroRapido
-            nombreEquipo={s.equipos[s.ganadorRondaPrincipal].nombre}
-            jugadoresSugeridos={s.equipos[s.ganadorRondaPrincipal].jugadores.map((j) => j.nombre)}
-            onIniciar={irADineroRapido}
-          />
+        {s.fase === "finJuego" && (
+          <>
+            {s.ganadorRondaPrincipal && (
+              <IniciarDineroRapido
+                nombreEquipo={s.equipos[s.ganadorRondaPrincipal].nombre}
+                jugadoresSugeridos={s.equipos[s.ganadorRondaPrincipal].jugadores.map((j) => j.nombre)}
+                onIniciar={irADineroRapido}
+              />
+            )}
+            <div className="pv-card" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <p className="pv-card-title">Otras opciones</p>
+              <button className="pv-btn pv-btn-block" onClick={agregarRondaExtra}>
+                ➕ Agregar una ronda más
+              </button>
+              <button className="pv-btn pv-btn-block" onClick={nuevaPartida}>
+                🆕 Nueva partida (conserva el banco de preguntas usadas)
+              </button>
+            </div>
+          </>
         )}
 
         {(s.fase === "dineroRapidoSetup" || s.fase === "dineroRapidoJugando") && <DineroRapidoPanel />}
@@ -199,11 +229,48 @@ export default function PresenterView() {
               Jugador 2 ({s.dineroRapido.jugador2}): {s.dineroRapido.respuestasJugador2.reduce((a, r) => a + r.puntos, 0)}
             </p>
             <p style={{ fontWeight: 700, margin: "10px 0 16px" }}>Total combinado: {totalCombinado(s.dineroRapido)}</p>
-            <button className="pv-btn pv-btn-primary pv-btn-block" onClick={reiniciarPartida}>
+            <button className="pv-btn pv-btn-primary pv-btn-block" onClick={nuevaPartida}>
               Nueva partida
             </button>
           </div>
         )}
+      </div>
+    </div>
+  );
+}
+
+function ConfiguracionPartida({
+  numeroRondasInicial,
+  onComenzar,
+}: {
+  numeroRondasInicial: number;
+  onComenzar: (numeroRondas: number) => void;
+}) {
+  const [numeroRondas, setNumeroRondas] = useState(numeroRondasInicial);
+
+  return (
+    <div className="pv-card">
+      <p className="pv-card-title">Configura la partida</p>
+      <p style={{ color: "var(--pv-text-dim)", fontSize: 13, margin: "0 0 14px" }}>
+        ¿Cuántas rondas se van a jugar? La partida termina cuando se completen, gane quien tenga más puntos — ya no
+        hay un puntaje fijo para ganar antes de tiempo.
+      </p>
+      <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+        <input
+          className="pv-input"
+          type="number"
+          min={1}
+          value={numeroRondas}
+          onChange={(e) => setNumeroRondas(Number(e.target.value) || 1)}
+          style={{ width: 90 }}
+        />
+        <button
+          className="pv-btn pv-btn-primary"
+          style={{ flex: "1 1 160px", minWidth: 0 }}
+          onClick={() => onComenzar(numeroRondas)}
+        >
+          Comenzar partida
+        </button>
       </div>
     </div>
   );

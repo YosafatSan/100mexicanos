@@ -119,6 +119,1206 @@
         { "texto": "Pongan atención", "puntos": 12 },
         { "texto": "Apaguen el celular", "puntos": 6 }
       ]
+    },
+    {
+      "id": "p011",
+      "categoria": "Hogar",
+      "texto": "Nombra algo que se te pierde seguido en tu casa",
+      "respuestas": [
+        { "texto": "Las llaves", "puntos": 32 },
+        { "texto": "El control remoto", "puntos": 24 },
+        { "texto": "El celular", "puntos": 19 },
+        { "texto": "Los lentes", "puntos": 12 },
+        { "texto": "La cartera", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p012",
+      "categoria": "Hogar",
+      "texto": "Nombra algo que dice tu mamá o tu abuela todo el tiempo",
+      "respuestas": [
+        { "texto": "Ponte un suéter", "puntos": 30 },
+        { "texto": "¿Cómo vas a salir así?", "puntos": 22 },
+        { "texto": "En mis tiempos...", "puntos": 18 },
+        { "texto": "Cierra la puerta, se sale el frío", "puntos": 15 },
+        { "texto": "Ya cómete eso", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p013",
+      "categoria": "Hogar",
+      "texto": "Nombra una excusa para no ir al gimnasio",
+      "respuestas": [
+        { "texto": "No tengo tiempo", "puntos": 34 },
+        { "texto": "Me siento cansado", "puntos": 24 },
+        { "texto": "Va a llover", "puntos": 15 },
+        { "texto": "Se me olvidó la ropa", "puntos": 13 },
+        { "texto": "Mañana empiezo", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p014",
+      "categoria": "Hogar",
+      "texto": "Nombra algo que haces cuando no puedes dormir",
+      "respuestas": [
+        { "texto": "Ver el celular", "puntos": 33 },
+        { "texto": "Dar vueltas en la cama", "puntos": 24 },
+        { "texto": "Contar ovejas", "puntos": 16 },
+        { "texto": "Tomar agua", "puntos": 13 },
+        { "texto": "Ver la tele", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p015",
+      "categoria": "Hogar",
+      "texto": "Nombra algo que guardas \"por si acaso\" aunque no lo uses",
+      "respuestas": [
+        { "texto": "Cables viejos", "puntos": 28 },
+        { "texto": "Cajas", "puntos": 22 },
+        { "texto": "Ropa que ya no te queda", "puntos": 19 },
+        { "texto": "Frascos de vidrio", "puntos": 15 },
+        { "texto": "Bolsas de plástico", "puntos": 11 }
+      ]
+    },
+    {
+      "id": "p016",
+      "categoria": "Comida",
+      "texto": "Nombra un antojo de comida callejera",
+      "respuestas": [
+        { "texto": "Tacos", "puntos": 36 },
+        { "texto": "Elotes", "puntos": 24 },
+        { "texto": "Tamales", "puntos": 17 },
+        { "texto": "Churros", "puntos": 12 },
+        { "texto": "Esquites", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p017",
+      "categoria": "Comida",
+      "texto": "Nombra algo que le pones al elote o esquite",
+      "respuestas": [
+        { "texto": "Mayonesa", "puntos": 30 },
+        { "texto": "Chile", "puntos": 24 },
+        { "texto": "Limón", "puntos": 20 },
+        { "texto": "Queso", "puntos": 14 },
+        { "texto": "Crema", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p018",
+      "categoria": "Comida",
+      "texto": "Nombra una bebida típica mexicana",
+      "respuestas": [
+        { "texto": "Agua de horchata", "puntos": 28 },
+        { "texto": "Tequila", "puntos": 24 },
+        { "texto": "Atole", "puntos": 18 },
+        { "texto": "Agua de jamaica", "puntos": 16 },
+        { "texto": "Pulque", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p019",
+      "categoria": "Comida",
+      "texto": "Nombra algo que no puede faltar en una fiesta mexicana",
+      "respuestas": [
+        { "texto": "Música", "puntos": 30 },
+        { "texto": "Botana", "puntos": 24 },
+        { "texto": "Cerveza", "puntos": 20 },
+        { "texto": "Piñata", "puntos": 15 },
+        { "texto": "Tacos", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p020",
+      "categoria": "Comida",
+      "texto": "Nombra algo que se come en Navidad o Año Nuevo",
+      "respuestas": [
+        { "texto": "Pavo", "puntos": 30 },
+        { "texto": "Romeritos", "puntos": 22 },
+        { "texto": "Bacalao", "puntos": 18 },
+        { "texto": "Ensalada de manzana", "puntos": 16 },
+        { "texto": "Ponche", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p021",
+      "categoria": "Fiestas",
+      "texto": "Nombra algo que hay en una posada",
+      "respuestas": [
+        { "texto": "Piñata", "puntos": 32 },
+        { "texto": "Ponche", "puntos": 24 },
+        { "texto": "Villancicos", "puntos": 18 },
+        { "texto": "Aguinaldos", "puntos": 14 },
+        { "texto": "Peregrinación", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p022",
+      "categoria": "Fiestas",
+      "texto": "Nombra algo típico de una fiesta de XV años",
+      "respuestas": [
+        { "texto": "El vals", "puntos": 30 },
+        { "texto": "El vestido rosa", "puntos": 22 },
+        { "texto": "Los chambelanes", "puntos": 19 },
+        { "texto": "El pastel", "puntos": 16 },
+        { "texto": "El cambio de zapatos", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p023",
+      "categoria": "Fiestas",
+      "texto": "Nombra algo relacionado con el Día de Muertos",
+      "respuestas": [
+        { "texto": "La ofrenda", "puntos": 30 },
+        { "texto": "Calaveritas de azúcar", "puntos": 24 },
+        { "texto": "Pan de muerto", "puntos": 20 },
+        { "texto": "Flores de cempasúchil", "puntos": 14 },
+        { "texto": "La Catrina", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p024",
+      "categoria": "Fiestas",
+      "texto": "Nombra algo que la gente hace el 15 de septiembre",
+      "respuestas": [
+        { "texto": "Gritar \"¡Viva México!\"", "puntos": 32 },
+        { "texto": "Comer pozole", "puntos": 22 },
+        { "texto": "Ver el Grito en la tele o el zócalo", "puntos": 18 },
+        { "texto": "Poner banderas", "puntos": 14 },
+        { "texto": "Prender cuetes", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p025",
+      "categoria": "Fiestas",
+      "texto": "Nombra un regalo típico de Navidad o Día de Reyes",
+      "respuestas": [
+        { "texto": "Ropa", "puntos": 28 },
+        { "texto": "Juguetes", "puntos": 25 },
+        { "texto": "Dinero", "puntos": 20 },
+        { "texto": "Perfume", "puntos": 14 },
+        { "texto": "Dulces", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p026",
+      "categoria": "Familia",
+      "texto": "Nombra una excusa para cancelar una cita",
+      "respuestas": [
+        { "texto": "Me siento mal", "puntos": 30 },
+        { "texto": "Se me hizo tarde en el trabajo", "puntos": 22 },
+        { "texto": "Surgió algo familiar", "puntos": 18 },
+        { "texto": "Se descompuso mi carro", "puntos": 16 },
+        { "texto": "Se me olvidó", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p027",
+      "categoria": "Familia",
+      "texto": "Nombra algo que hace un suegro o una suegra",
+      "respuestas": [
+        { "texto": "Dar consejos sin que se los pidan", "puntos": 30 },
+        { "texto": "Comparar con el ex", "puntos": 20 },
+        { "texto": "Criticar la comida", "puntos": 18 },
+        { "texto": "Contar la misma historia", "puntos": 16 },
+        { "texto": "Preguntar cuándo hay nietos", "puntos": 12 }
+      ]
+    },
+    {
+      "id": "p028",
+      "categoria": "Familia",
+      "texto": "Nombra un motivo común de pelea entre parejas",
+      "respuestas": [
+        { "texto": "Los celos", "puntos": 30 },
+        { "texto": "El dinero", "puntos": 26 },
+        { "texto": "Falta de tiempo juntos", "puntos": 18 },
+        { "texto": "Las tareas de la casa", "puntos": 14 },
+        { "texto": "La familia política", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p029",
+      "categoria": "Familia",
+      "texto": "Nombra un apodo común entre amigos o familia",
+      "respuestas": [
+        { "texto": "Gordo o Gorda", "puntos": 28 },
+        { "texto": "Flaco o Flaca", "puntos": 22 },
+        { "texto": "Güero o Güera", "puntos": 18 },
+        { "texto": "Viejo o Vieja", "puntos": 15 },
+        { "texto": "Mijo o Mija", "puntos": 12 }
+      ]
+    },
+    {
+      "id": "p030",
+      "categoria": "Familia",
+      "texto": "Nombra algo que dicen los papás cuando te regañan",
+      "respuestas": [
+        { "texto": "Porque yo lo digo", "puntos": 30 },
+        { "texto": "Cuando tengas hijos vas a entender", "puntos": 24 },
+        { "texto": "Te lo dije", "puntos": 18 },
+        { "texto": "No estoy jugando", "puntos": 15 },
+        { "texto": "Vas a ver cuando lleguemos a la casa", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p031",
+      "categoria": "Trabajo",
+      "texto": "Nombra una excusa para faltar al trabajo",
+      "respuestas": [
+        { "texto": "Estoy enfermo", "puntos": 34 },
+        { "texto": "Tengo cita médica", "puntos": 24 },
+        { "texto": "Problema familiar", "puntos": 18 },
+        { "texto": "Se descompuso mi carro", "puntos": 13 },
+        { "texto": "No tengo quién cuide a mis hijos", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p032",
+      "categoria": "Trabajo",
+      "texto": "Nombra algo que dice un jefe seguido",
+      "respuestas": [
+        { "texto": "Necesito esto para ayer", "puntos": 30 },
+        { "texto": "Vamos a tener una junta", "puntos": 24 },
+        { "texto": "Buen trabajo, pero...", "puntos": 18 },
+        { "texto": "¿Ya lo terminaste?", "puntos": 15 },
+        { "texto": "Hay que hacer más con menos", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p033",
+      "categoria": "Trabajo",
+      "texto": "Nombra algo que haces en la oficina cuando nadie te ve",
+      "respuestas": [
+        { "texto": "Revisar el celular", "puntos": 32 },
+        { "texto": "Cerrar los ojos un rato", "puntos": 22 },
+        { "texto": "Comer algo escondido", "puntos": 19 },
+        { "texto": "Platicar por chat", "puntos": 15 },
+        { "texto": "Ver redes sociales", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p034",
+      "categoria": "Escuela",
+      "texto": "Nombra una materia escolar que se le dificulta a mucha gente",
+      "respuestas": [
+        { "texto": "Matemáticas", "puntos": 36 },
+        { "texto": "Física", "puntos": 22 },
+        { "texto": "Química", "puntos": 18 },
+        { "texto": "Inglés", "puntos": 12 },
+        { "texto": "Historia", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p035",
+      "categoria": "Escuela",
+      "texto": "Nombra algo que se hace el último día de clases",
+      "respuestas": [
+        { "texto": "Firmar playeras o libretas", "puntos": 28 },
+        { "texto": "Tomarse fotos", "puntos": 24 },
+        { "texto": "Repartir regalitos", "puntos": 18 },
+        { "texto": "Llorar de emoción", "puntos": 16 },
+        { "texto": "Hacer fiesta en el salón", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p036",
+      "categoria": "Dinero",
+      "texto": "Nombra algo en lo que se va la quincena",
+      "respuestas": [
+        { "texto": "La renta", "puntos": 30 },
+        { "texto": "La comida", "puntos": 24 },
+        { "texto": "Los servicios (luz, agua, internet)", "puntos": 18 },
+        { "texto": "El transporte", "puntos": 15 },
+        { "texto": "Las deudas", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p037",
+      "categoria": "Dinero",
+      "texto": "Nombra algo que la gente regatea en el mercado",
+      "respuestas": [
+        { "texto": "Ropa", "puntos": 28 },
+        { "texto": "Fruta y verdura", "puntos": 24 },
+        { "texto": "Artesanías", "puntos": 18 },
+        { "texto": "Zapatos", "puntos": 16 },
+        { "texto": "Electrónicos", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p038",
+      "categoria": "Dinero",
+      "texto": "Nombra un gasto \"hormiga\" (esos gastos chiquitos que se acumulan)",
+      "respuestas": [
+        { "texto": "El café", "puntos": 30 },
+        { "texto": "Comida en la calle", "puntos": 24 },
+        { "texto": "Apps de streaming", "puntos": 18 },
+        { "texto": "Uber o taxi", "puntos": 15 },
+        { "texto": "Antojos", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p039",
+      "categoria": "Dinero",
+      "texto": "Nombra algo que compras aunque no lo necesites",
+      "respuestas": [
+        { "texto": "Ropa", "puntos": 30 },
+        { "texto": "Zapatos", "puntos": 22 },
+        { "texto": "Comida chatarra", "puntos": 18 },
+        { "texto": "Cosas en oferta", "puntos": 16 },
+        { "texto": "Maquillaje", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p040",
+      "categoria": "Dinero",
+      "texto": "Nombra algo en lo que ahorrarías si pudieras",
+      "respuestas": [
+        { "texto": "Un viaje", "puntos": 28 },
+        { "texto": "Una casa", "puntos": 24 },
+        { "texto": "Un carro", "puntos": 20 },
+        { "texto": "La universidad de los hijos", "puntos": 15 },
+        { "texto": "El retiro", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p041",
+      "categoria": "Tecnología",
+      "texto": "Nombra una app que usa mucha gente todos los días",
+      "respuestas": [
+        { "texto": "WhatsApp", "puntos": 34 },
+        { "texto": "Facebook", "puntos": 22 },
+        { "texto": "Instagram", "puntos": 18 },
+        { "texto": "TikTok", "puntos": 15 },
+        { "texto": "YouTube", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p042",
+      "categoria": "Tecnología",
+      "texto": "Nombra algo que haces cuando se te acaba la batería del celular",
+      "respuestas": [
+        { "texto": "Buscar un cargador", "puntos": 32 },
+        { "texto": "Entrar en pánico", "puntos": 22 },
+        { "texto": "Bajarle el brillo a la pantalla", "puntos": 18 },
+        { "texto": "Pedir prestado un cargador", "puntos": 15 },
+        { "texto": "Apagarlo para ahorrar batería", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p043",
+      "categoria": "Tecnología",
+      "texto": "Nombra una excusa para no contestar el teléfono",
+      "respuestas": [
+        { "texto": "No tenía señal", "puntos": 30 },
+        { "texto": "No sentí que sonó", "puntos": 24 },
+        { "texto": "Estaba ocupado", "puntos": 18 },
+        { "texto": "Se me acabó la batería", "puntos": 15 },
+        { "texto": "No reconocí el número", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p044",
+      "categoria": "Tecnología",
+      "texto": "Nombra algo que la gente publica en redes sociales",
+      "respuestas": [
+        { "texto": "Fotos de comida", "puntos": 28 },
+        { "texto": "Fotos de viajes", "puntos": 24 },
+        { "texto": "Memes", "puntos": 20 },
+        { "texto": "Fotos con la pareja o familia", "puntos": 16 },
+        { "texto": "Quejas", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p045",
+      "categoria": "Tecnología",
+      "texto": "Nombra algo que haces cuando no tienes internet",
+      "respuestas": [
+        { "texto": "Buscar wifi ajeno", "puntos": 28 },
+        { "texto": "Usar los datos del celular", "puntos": 24 },
+        { "texto": "Aburrirte", "puntos": 18 },
+        { "texto": "Leer un libro", "puntos": 16 },
+        { "texto": "Salir a caminar", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p046",
+      "categoria": "Deportes",
+      "texto": "Nombra un deporte que se ve mucho en la tele en México",
+      "respuestas": [
+        { "texto": "Fútbol", "puntos": 40 },
+        { "texto": "Box", "puntos": 22 },
+        { "texto": "Lucha libre", "puntos": 16 },
+        { "texto": "Béisbol", "puntos": 12 },
+        { "texto": "Fútbol americano", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p047",
+      "categoria": "Entretenimiento",
+      "texto": "Nombra un programa o telenovela clásica mexicana",
+      "respuestas": [
+        { "texto": "El Chavo del Ocho", "puntos": 30 },
+        { "texto": "Rebelde", "puntos": 20 },
+        { "texto": "La Rosa de Guadalupe", "puntos": 18 },
+        { "texto": "María la del Barrio", "puntos": 16 },
+        { "texto": "Chespirito", "puntos": 12 }
+      ]
+    },
+    {
+      "id": "p048",
+      "categoria": "Deportes",
+      "texto": "Nombra algo que gritas viendo un partido de fútbol",
+      "respuestas": [
+        { "texto": "¡Gol!", "puntos": 36 },
+        { "texto": "¡Árbitro, ladrón!", "puntos": 22 },
+        { "texto": "¡Vamos México!", "puntos": 18 },
+        { "texto": "¡Falta!", "puntos": 14 },
+        { "texto": "¡No puede ser!", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p049",
+      "categoria": "Deportes",
+      "texto": "Nombra un equipo de fútbol mexicano famoso",
+      "respuestas": [
+        { "texto": "América", "puntos": 30 },
+        { "texto": "Chivas", "puntos": 26 },
+        { "texto": "Cruz Azul", "puntos": 18 },
+        { "texto": "Pumas", "puntos": 15 },
+        { "texto": "Tigres", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p050",
+      "categoria": "Entretenimiento",
+      "texto": "Nombra algo que haces para celebrar que tu equipo ganó",
+      "respuestas": [
+        { "texto": "Gritar", "puntos": 30 },
+        { "texto": "Salir a festejar", "puntos": 22 },
+        { "texto": "Brindar", "puntos": 20 },
+        { "texto": "Publicarlo en redes", "puntos": 15 },
+        { "texto": "Abrazar a quien esté cerca", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p051",
+      "categoria": "Transporte",
+      "texto": "Nombra una excusa que da un conductor de Uber o taxi cuando llega tarde",
+      "respuestas": [
+        { "texto": "Había tráfico", "puntos": 34 },
+        { "texto": "Me perdí", "puntos": 22 },
+        { "texto": "El GPS marcaba mal", "puntos": 18 },
+        { "texto": "Tuve que dar la vuelta", "puntos": 15 },
+        { "texto": "Se descompuso el carro", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p052",
+      "categoria": "Transporte",
+      "texto": "Nombra algo que siempre llevas en el coche",
+      "respuestas": [
+        { "texto": "Cargador de celular", "puntos": 28 },
+        { "texto": "Agua", "puntos": 24 },
+        { "texto": "Papel de baño", "puntos": 18 },
+        { "texto": "Lentes de sol", "puntos": 16 },
+        { "texto": "Monedas para el estacionamiento", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p053",
+      "categoria": "Transporte",
+      "texto": "Nombra algo que haces cuando estás atorado en el tráfico",
+      "respuestas": [
+        { "texto": "Escuchar música", "puntos": 30 },
+        { "texto": "Revisar el celular", "puntos": 24 },
+        { "texto": "Tocar el claxon", "puntos": 18 },
+        { "texto": "Estresarte o enojarte", "puntos": 16 },
+        { "texto": "Hablar por teléfono", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p054",
+      "categoria": "Transporte",
+      "texto": "Nombra algo que la gente hace mientras espera el camión o combi",
+      "respuestas": [
+        { "texto": "Ver el celular", "puntos": 30 },
+        { "texto": "Platicar", "puntos": 22 },
+        { "texto": "Checar la hora, impacientarse", "puntos": 20 },
+        { "texto": "Comer algo", "puntos": 18 },
+        { "texto": "Asomarse a ver si ya viene", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p055",
+      "categoria": "Transporte",
+      "texto": "Nombra algo típico de manejar en la Ciudad de México",
+      "respuestas": [
+        { "texto": "El tráfico", "puntos": 34 },
+        { "texto": "Los baches", "puntos": 22 },
+        { "texto": "El Hoy No Circula", "puntos": 18 },
+        { "texto": "Motociclistas pasando entre carros", "puntos": 15 },
+        { "texto": "Falta de estacionamiento", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p056",
+      "categoria": "Clima",
+      "texto": "Nombra algo que haces cuando hace mucho calor",
+      "respuestas": [
+        { "texto": "Tomar agua fría", "puntos": 30 },
+        { "texto": "Prender el ventilador o A/C", "puntos": 26 },
+        { "texto": "Bañarte", "puntos": 18 },
+        { "texto": "Buscar sombra", "puntos": 15 },
+        { "texto": "Comer una paleta o nieve", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p057",
+      "categoria": "Clima",
+      "texto": "Nombra algo que haces en temporada de lluvias",
+      "respuestas": [
+        { "texto": "Llevar paraguas", "puntos": 30 },
+        { "texto": "Evitar salir", "puntos": 22 },
+        { "texto": "Checar el clima antes de salir", "puntos": 18 },
+        { "texto": "Usar botas", "puntos": 16 },
+        { "texto": "Quedarte más tiempo en el tráfico", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p058",
+      "categoria": "Clima",
+      "texto": "Nombra algo que se hace para el frío en invierno",
+      "respuestas": [
+        { "texto": "Ponerte un suéter o chamarra", "puntos": 34 },
+        { "texto": "Tomar café o chocolate caliente", "puntos": 24 },
+        { "texto": "Usar cobijas extra", "puntos": 18 },
+        { "texto": "Prender la calefacción", "puntos": 14 },
+        { "texto": "Tomarte una sopa caliente", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p059",
+      "categoria": "Clima",
+      "texto": "Nombra un problema que causa la lluvia fuerte en la ciudad",
+      "respuestas": [
+        { "texto": "Inundaciones", "puntos": 32 },
+        { "texto": "Tráfico", "puntos": 24 },
+        { "texto": "Encharcamientos", "puntos": 18 },
+        { "texto": "Cortes de luz", "puntos": 15 },
+        { "texto": "Baches", "puntos": 9 }
+      ]
+    },
+    {
+      "id": "p060",
+      "categoria": "Clima",
+      "texto": "Nombra algo típico del verano en México",
+      "respuestas": [
+        { "texto": "Vacaciones", "puntos": 30 },
+        { "texto": "Calor", "puntos": 24 },
+        { "texto": "Ir a la alberca o playa", "puntos": 20 },
+        { "texto": "Helados o paletas", "puntos": 16 },
+        { "texto": "Lluvias por la tarde", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p061",
+      "categoria": "Hogar",
+      "texto": "Nombra algo que haces los domingos en tu casa",
+      "respuestas": [
+        { "texto": "Limpiar", "puntos": 32 },
+        { "texto": "Descansar", "puntos": 26 },
+        { "texto": "Ver a la familia", "puntos": 18 },
+        { "texto": "Cocinar", "puntos": 14 },
+        { "texto": "Ver películas", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p062",
+      "categoria": "Hogar",
+      "texto": "Nombra algo que discuten las parejas sobre los quehaceres del hogar",
+      "respuestas": [
+        { "texto": "Quién lava los platos", "puntos": 30 },
+        { "texto": "Quién saca la basura", "puntos": 24 },
+        { "texto": "Quién limpia el baño", "puntos": 20 },
+        { "texto": "Quién hace de comer", "puntos": 16 },
+        { "texto": "Quién tiende la cama", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p063",
+      "categoria": "Hogar",
+      "texto": "Nombra algo que se rompe fácil en la casa y da flojera arreglar",
+      "respuestas": [
+        { "texto": "El foco", "puntos": 28 },
+        { "texto": "La regadera", "puntos": 24 },
+        { "texto": "El interruptor de luz", "puntos": 20 },
+        { "texto": "La cerradura", "puntos": 16 },
+        { "texto": "El control remoto", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p064",
+      "categoria": "Hogar",
+      "texto": "Nombra algo que haces cuando llegan visitas de sorpresa",
+      "respuestas": [
+        { "texto": "Recoger rápido", "puntos": 34 },
+        { "texto": "Fingir que todo está limpio", "puntos": 22 },
+        { "texto": "Ofrecer algo de tomar", "puntos": 20 },
+        { "texto": "Ponerte nervioso", "puntos": 14 },
+        { "texto": "Esconder el desorden", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p065",
+      "categoria": "Hogar",
+      "texto": "Nombra un mueble que no puede faltar en la sala",
+      "respuestas": [
+        { "texto": "El sofá", "puntos": 36 },
+        { "texto": "La televisión", "puntos": 28 },
+        { "texto": "La mesa de centro", "puntos": 16 },
+        { "texto": "El librero", "puntos": 12 },
+        { "texto": "Los cojines", "puntos": 6 }
+      ]
+    },
+    {
+      "id": "p066",
+      "categoria": "Comida",
+      "texto": "Nombra algo que le pones a los tacos",
+      "respuestas": [
+        { "texto": "Cebolla", "puntos": 28 },
+        { "texto": "Cilantro", "puntos": 24 },
+        { "texto": "Salsa", "puntos": 20 },
+        { "texto": "Limón", "puntos": 16 },
+        { "texto": "Piña (al pastor)", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p067",
+      "categoria": "Comida",
+      "texto": "Nombra un ingrediente típico de un buen mole",
+      "respuestas": [
+        { "texto": "Chile", "puntos": 30 },
+        { "texto": "Chocolate", "puntos": 24 },
+        { "texto": "Especias", "puntos": 18 },
+        { "texto": "Pollo", "puntos": 16 },
+        { "texto": "Ajonjolí", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p068",
+      "categoria": "Comida",
+      "texto": "Nombra algo que pides de acompañamiento con tus tacos",
+      "respuestas": [
+        { "texto": "Refresco", "puntos": 30 },
+        { "texto": "Agua fresca", "puntos": 24 },
+        { "texto": "Frijoles", "puntos": 20 },
+        { "texto": "Arroz", "puntos": 16 },
+        { "texto": "Quesadilla", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p069",
+      "categoria": "Comida",
+      "texto": "Nombra una comida que preparan las abuelitas mexicanas",
+      "respuestas": [
+        { "texto": "Mole", "puntos": 30 },
+        { "texto": "Pozole", "puntos": 24 },
+        { "texto": "Sopa de fideo", "puntos": 18 },
+        { "texto": "Arroz con leche", "puntos": 16 },
+        { "texto": "Tamales", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p070",
+      "categoria": "Comida",
+      "texto": "Nombra algo que no puede faltar en un asado o carne asada",
+      "respuestas": [
+        { "texto": "Carne", "puntos": 32 },
+        { "texto": "Cerveza", "puntos": 24 },
+        { "texto": "Tortillas", "puntos": 18 },
+        { "texto": "Salsa", "puntos": 16 },
+        { "texto": "Guacamole", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p071",
+      "categoria": "Fiestas",
+      "texto": "Nombra algo que se hace en una boda mexicana",
+      "respuestas": [
+        { "texto": "Bailar", "puntos": 30 },
+        { "texto": "El brindis", "puntos": 24 },
+        { "texto": "Aventar el ramo", "puntos": 20 },
+        { "texto": "Llorar de emoción", "puntos": 16 },
+        { "texto": "Comer pastel", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p072",
+      "categoria": "Fiestas",
+      "texto": "Nombra algo típico de una fiesta infantil",
+      "respuestas": [
+        { "texto": "La piñata", "puntos": 30 },
+        { "texto": "Los dulces", "puntos": 24 },
+        { "texto": "El pastel", "puntos": 20 },
+        { "texto": "El payasito", "puntos": 16 },
+        { "texto": "Los juegos", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p073",
+      "categoria": "Fiestas",
+      "texto": "Nombra algo que se necesita para organizar una fiesta sorpresa",
+      "respuestas": [
+        { "texto": "Mantener el secreto", "puntos": 30 },
+        { "texto": "Decoración", "puntos": 24 },
+        { "texto": "Invitar a los amigos", "puntos": 20 },
+        { "texto": "Un pastel", "puntos": 16 },
+        { "texto": "Elegir la hora perfecta", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p074",
+      "categoria": "Fiestas",
+      "texto": "Nombra algo que se escucha en una fiesta familiar mexicana",
+      "respuestas": [
+        { "texto": "Música banda o cumbia", "puntos": 30 },
+        { "texto": "Risas", "puntos": 24 },
+        { "texto": "Los niños gritando", "puntos": 18 },
+        { "texto": "Los abuelos platicando", "puntos": 16 },
+        { "texto": "Alguien cantando mal", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p075",
+      "categoria": "Fiestas",
+      "texto": "Nombra algo típico de un antro o fiesta con amigos",
+      "respuestas": [
+        { "texto": "Música", "puntos": 30 },
+        { "texto": "Bebidas", "puntos": 24 },
+        { "texto": "Bailar", "puntos": 20 },
+        { "texto": "Tomarse fotos", "puntos": 16 },
+        { "texto": "Perder algo", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p076",
+      "categoria": "Familia",
+      "texto": "Nombra algo que pasa en las reuniones familiares grandes",
+      "respuestas": [
+        { "texto": "Chismes", "puntos": 28 },
+        { "texto": "Comida en exceso", "puntos": 24 },
+        { "texto": "Discusiones", "puntos": 20 },
+        { "texto": "Fotos familiares", "puntos": 18 },
+        { "texto": "Niños corriendo", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p077",
+      "categoria": "Familia",
+      "texto": "Nombra un consejo típico que da un abuelo",
+      "respuestas": [
+        { "texto": "Ahorra para el futuro", "puntos": 30 },
+        { "texto": "Respeta a tus mayores", "puntos": 24 },
+        { "texto": "Come bien", "puntos": 18 },
+        { "texto": "No dejes las cosas para después", "puntos": 16 },
+        { "texto": "Cuida tu dinero", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p078",
+      "categoria": "Familia",
+      "texto": "Nombra algo que hacen los hermanos cuando pelean",
+      "respuestas": [
+        { "texto": "Gritarse", "puntos": 30 },
+        { "texto": "Acusarse con los papás", "puntos": 24 },
+        { "texto": "No hablarse por un rato", "puntos": 20 },
+        { "texto": "Aventarse cosas", "puntos": 16 },
+        { "texto": "Cerrar la puerta de un golpe", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p079",
+      "categoria": "Familia",
+      "texto": "Nombra algo típico de una comida familiar de domingo",
+      "respuestas": [
+        { "texto": "Mucha comida", "puntos": 30 },
+        { "texto": "Toda la familia reunida", "puntos": 24 },
+        { "texto": "Sobremesa larga", "puntos": 20 },
+        { "texto": "Postre", "puntos": 16 },
+        { "texto": "Alguien que llega tarde", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p080",
+      "categoria": "Familia",
+      "texto": "Nombra algo que hace un papá cuando te enseña a manejar",
+      "respuestas": [
+        { "texto": "Gritar", "puntos": 28 },
+        { "texto": "Frenar de imaginario con el pie", "puntos": 24 },
+        { "texto": "Ponerse nervioso", "puntos": 20 },
+        { "texto": "Dar consejos", "puntos": 16 },
+        { "texto": "Agarrarse fuerte", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p081",
+      "categoria": "Trabajo",
+      "texto": "Nombra algo que la gente hace en su hora de comida en el trabajo",
+      "respuestas": [
+        { "texto": "Comer con los compañeros", "puntos": 30 },
+        { "texto": "Ver el celular", "puntos": 24 },
+        { "texto": "Salir a caminar", "puntos": 18 },
+        { "texto": "Dormir una siesta", "puntos": 16 },
+        { "texto": "Hacer pendientes personales", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p082",
+      "categoria": "Trabajo",
+      "texto": "Nombra algo que se celebra en la oficina",
+      "respuestas": [
+        { "texto": "Cumpleaños", "puntos": 32 },
+        { "texto": "Fin de año", "puntos": 24 },
+        { "texto": "Aniversario de la empresa", "puntos": 18 },
+        { "texto": "Ascensos", "puntos": 16 },
+        { "texto": "Que sea viernes", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p083",
+      "categoria": "Escuela",
+      "texto": "Nombra algo que llevas siempre en tu mochila",
+      "respuestas": [
+        { "texto": "Cuadernos", "puntos": 28 },
+        { "texto": "Lápices o plumas", "puntos": 24 },
+        { "texto": "El celular", "puntos": 20 },
+        { "texto": "Agua", "puntos": 16 },
+        { "texto": "Comida o lonche", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p084",
+      "categoria": "Escuela",
+      "texto": "Nombra algo que se hace en un examen cuando no sabes la respuesta",
+      "respuestas": [
+        { "texto": "Adivinar", "puntos": 30 },
+        { "texto": "Voltear a ver a un compañero", "puntos": 22 },
+        { "texto": "Dejarla en blanco", "puntos": 20 },
+        { "texto": "Ponerte nervioso", "puntos": 18 },
+        { "texto": "Rezar", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p085",
+      "categoria": "Trabajo",
+      "texto": "Nombra algo que haces la noche antes de un examen o una junta importante",
+      "respuestas": [
+        { "texto": "Estudiar o prepararte", "puntos": 30 },
+        { "texto": "No poder dormir", "puntos": 24 },
+        { "texto": "Repasar todo de último momento", "puntos": 18 },
+        { "texto": "Ponerte nervioso", "puntos": 16 },
+        { "texto": "Rezar o pedir suerte", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p086",
+      "categoria": "Dinero",
+      "texto": "Nombra algo que la gente hace cuando le cae un dinero extra (aguinaldo, bono)",
+      "respuestas": [
+        { "texto": "Pagar deudas", "puntos": 30 },
+        { "texto": "Comprar algo que quería", "puntos": 24 },
+        { "texto": "Ahorrarlo", "puntos": 20 },
+        { "texto": "Irse de viaje", "puntos": 16 },
+        { "texto": "Gastarlo en la familia", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p087",
+      "categoria": "Dinero",
+      "texto": "Nombra algo que la gente compra a meses sin intereses",
+      "respuestas": [
+        { "texto": "Televisión", "puntos": 28 },
+        { "texto": "Celular", "puntos": 24 },
+        { "texto": "Muebles", "puntos": 20 },
+        { "texto": "Electrodomésticos", "puntos": 16 },
+        { "texto": "Ropa", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p088",
+      "categoria": "Dinero",
+      "texto": "Nombra una forma en que la gente trata de ganar dinero extra",
+      "respuestas": [
+        { "texto": "Vender algo", "puntos": 30 },
+        { "texto": "Un segundo trabajo", "puntos": 24 },
+        { "texto": "Trabajo freelance", "puntos": 18 },
+        { "texto": "Vender comida", "puntos": 16 },
+        { "texto": "Rifas", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p089",
+      "categoria": "Dinero",
+      "texto": "Nombra algo en lo que gastas sin darte cuenta",
+      "respuestas": [
+        { "texto": "Comida rápida", "puntos": 28 },
+        { "texto": "Suscripciones", "puntos": 24 },
+        { "texto": "Apps o juegos", "puntos": 20 },
+        { "texto": "Antojos", "puntos": 16 },
+        { "texto": "Taxis o Uber", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p090",
+      "categoria": "Dinero",
+      "texto": "Nombra algo que haces cuando andas corto de dinero a fin de mes",
+      "respuestas": [
+        { "texto": "Pedir prestado", "puntos": 30 },
+        { "texto": "Dejar de salir", "puntos": 24 },
+        { "texto": "Cocinar en casa", "puntos": 20 },
+        { "texto": "Vender algo", "puntos": 16 },
+        { "texto": "Usar la tarjeta de crédito", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p091",
+      "categoria": "Tecnología",
+      "texto": "Nombra algo que haces nada más despertar y agarrar el celular",
+      "respuestas": [
+        { "texto": "Ver mensajes", "puntos": 30 },
+        { "texto": "Ver redes sociales", "puntos": 24 },
+        { "texto": "Ver la hora", "puntos": 20 },
+        { "texto": "Revisar el correo", "puntos": 16 },
+        { "texto": "Ver notificaciones", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p092",
+      "categoria": "Tecnología",
+      "texto": "Nombra algo molesto de las videollamadas",
+      "respuestas": [
+        { "texto": "Que se congele la imagen", "puntos": 30 },
+        { "texto": "Que no se escuche bien", "puntos": 24 },
+        { "texto": "Que alguien hable al mismo tiempo", "puntos": 18 },
+        { "texto": "Ruido de fondo", "puntos": 16 },
+        { "texto": "No saber si sigues conectado", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p093",
+      "categoria": "Tecnología",
+      "texto": "Nombra algo que la gente hace para tener más batería en su celular",
+      "respuestas": [
+        { "texto": "Usar modo avión o ahorro de batería", "puntos": 28 },
+        { "texto": "Bajarle el brillo", "puntos": 24 },
+        { "texto": "Cerrar apps", "puntos": 20 },
+        { "texto": "Traer cargador o power bank", "puntos": 18 },
+        { "texto": "Apagar el wifi o los datos", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p094",
+      "categoria": "Tecnología",
+      "texto": "Nombra una plataforma de streaming que usa la gente",
+      "respuestas": [
+        { "texto": "Netflix", "puntos": 34 },
+        { "texto": "Disney+", "puntos": 24 },
+        { "texto": "Amazon Prime Video", "puntos": 18 },
+        { "texto": "YouTube", "puntos": 14 },
+        { "texto": "HBO Max", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p095",
+      "categoria": "Tecnología",
+      "texto": "Nombra algo que la gente busca en internet cuando no se siente bien",
+      "respuestas": [
+        { "texto": "Sus síntomas", "puntos": 30 },
+        { "texto": "Remedios caseros", "puntos": 24 },
+        { "texto": "Si es algo grave", "puntos": 20 },
+        { "texto": "Videos en YouTube", "puntos": 16 },
+        { "texto": "Opiniones de otras personas", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p096",
+      "categoria": "Deportes",
+      "texto": "Nombra algo que hace un aficionado antes de un partido importante",
+      "respuestas": [
+        { "texto": "Ponerse la playera del equipo", "puntos": 30 },
+        { "texto": "Ver el partido con amigos", "puntos": 24 },
+        { "texto": "Comprar botana", "puntos": 20 },
+        { "texto": "Ponerse nervioso", "puntos": 16 },
+        { "texto": "Hacer una porra o ritual", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p097",
+      "categoria": "Deportes",
+      "texto": "Nombra un deporte que se practica en la escuela",
+      "respuestas": [
+        { "texto": "Fútbol", "puntos": 32 },
+        { "texto": "Basquetbol", "puntos": 24 },
+        { "texto": "Voleibol", "puntos": 18 },
+        { "texto": "Atletismo", "puntos": 16 },
+        { "texto": "Béisbol", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p098",
+      "categoria": "Entretenimiento",
+      "texto": "Nombra algo que haces en un maratón de series",
+      "respuestas": [
+        { "texto": "Ver muchos capítulos seguidos", "puntos": 30 },
+        { "texto": "Comer comida chatarra", "puntos": 24 },
+        { "texto": "Ver memes de la serie", "puntos": 18 },
+        { "texto": "Evitar los spoilers", "puntos": 16 },
+        { "texto": "Comentarlo en redes", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p099",
+      "categoria": "Entretenimiento",
+      "texto": "Nombra un tipo de música que le gusta a los mexicanos",
+      "respuestas": [
+        { "texto": "Banda", "puntos": 28 },
+        { "texto": "Regional mexicano o corridos", "puntos": 24 },
+        { "texto": "Reguetón", "puntos": 20 },
+        { "texto": "Cumbia", "puntos": 18 },
+        { "texto": "Rock en español", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p100",
+      "categoria": "Entretenimiento",
+      "texto": "Nombra algo que haces cuando vas al cine",
+      "respuestas": [
+        { "texto": "Comprar palomitas", "puntos": 32 },
+        { "texto": "Comprar refresco", "puntos": 24 },
+        { "texto": "Apagar el celular", "puntos": 18 },
+        { "texto": "Buscar buen asiento", "puntos": 16 },
+        { "texto": "Comentar la película al salir", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p101",
+      "categoria": "Transporte",
+      "texto": "Nombra algo que revisas antes de un viaje largo en carro",
+      "respuestas": [
+        { "texto": "La gasolina", "puntos": 30 },
+        { "texto": "El aceite o las llantas", "puntos": 24 },
+        { "texto": "La ruta en el GPS", "puntos": 20 },
+        { "texto": "El clima", "puntos": 16 },
+        { "texto": "Que traigas todo lo necesario", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p102",
+      "categoria": "Transporte",
+      "texto": "Nombra algo típico de viajar en avión",
+      "respuestas": [
+        { "texto": "Las filas para abordar", "puntos": 28 },
+        { "texto": "El equipaje de mano", "puntos": 24 },
+        { "texto": "La comida del vuelo", "puntos": 18 },
+        { "texto": "El cinturón de seguridad", "puntos": 16 },
+        { "texto": "Los oídos tapados", "puntos": 12 }
+      ]
+    },
+    {
+      "id": "p103",
+      "categoria": "Transporte",
+      "texto": "Nombra algo que la gente hace para evitar el tráfico",
+      "respuestas": [
+        { "texto": "Salir más temprano", "puntos": 30 },
+        { "texto": "Buscar rutas alternas", "puntos": 24 },
+        { "texto": "Usar una app de tráfico", "puntos": 20 },
+        { "texto": "Trabajar desde casa", "puntos": 16 },
+        { "texto": "Usar el transporte público", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p104",
+      "categoria": "Transporte",
+      "texto": "Nombra algo que necesitas para sacar la licencia de manejo",
+      "respuestas": [
+        { "texto": "Un examen", "puntos": 30 },
+        { "texto": "Documentos o identificación", "puntos": 24 },
+        { "texto": "Pagar un trámite", "puntos": 20 },
+        { "texto": "Lentes, si usas", "puntos": 16 },
+        { "texto": "Práctica de manejo", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p105",
+      "categoria": "Transporte",
+      "texto": "Nombra algo que hace la gente al estacionarse en un lugar difícil",
+      "respuestas": [
+        { "texto": "Dar muchas vueltas", "puntos": 30 },
+        { "texto": "Pedir ayuda a alguien", "puntos": 24 },
+        { "texto": "Estresarse", "puntos": 20 },
+        { "texto": "Rayar el coche", "puntos": 16 },
+        { "texto": "Dejarlo mal estacionado", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p106",
+      "categoria": "Clima",
+      "texto": "Nombra algo que revisas antes de salir de casa por el clima",
+      "respuestas": [
+        { "texto": "El pronóstico del clima", "puntos": 30 },
+        { "texto": "Si va a llover", "puntos": 24 },
+        { "texto": "La temperatura", "puntos": 20 },
+        { "texto": "Si hace viento", "puntos": 16 },
+        { "texto": "Cómo está vestida la gente afuera", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p107",
+      "categoria": "Clima",
+      "texto": "Nombra algo que pasa cuando hay una tormenta eléctrica",
+      "respuestas": [
+        { "texto": "Se va la luz", "puntos": 30 },
+        { "texto": "Truenos fuertes", "puntos": 24 },
+        { "texto": "La gente se asusta", "puntos": 18 },
+        { "texto": "Los perros se esconden", "puntos": 16 },
+        { "texto": "Se cae el internet", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p108",
+      "categoria": "Clima",
+      "texto": "Nombra algo típico del otoño",
+      "respuestas": [
+        { "texto": "Hojas cayendo de los árboles", "puntos": 30 },
+        { "texto": "Bajan las temperaturas", "puntos": 24 },
+        { "texto": "Días más cortos", "puntos": 18 },
+        { "texto": "Suéteres", "puntos": 16 },
+        { "texto": "Día de Muertos", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p109",
+      "categoria": "Clima",
+      "texto": "Nombra algo que la gente hace cuando anuncian un huracán",
+      "respuestas": [
+        { "texto": "Comprar despensa", "puntos": 30 },
+        { "texto": "Guardar agua", "puntos": 24 },
+        { "texto": "Quedarse en casa", "puntos": 18 },
+        { "texto": "Revisar las noticias", "puntos": 16 },
+        { "texto": "Proteger las ventanas", "puntos": 10 }
+      ]
+    },
+    {
+      "id": "p110",
+      "categoria": "Clima",
+      "texto": "Nombra algo típico de un día muy nublado",
+      "respuestas": [
+        { "texto": "Dan ganas de dormir", "puntos": 28 },
+        { "texto": "Puede llover en cualquier momento", "puntos": 24 },
+        { "texto": "Hace más frío", "puntos": 20 },
+        { "texto": "La gente anda de mal humor", "puntos": 16 },
+        { "texto": "Se necesita llevar paraguas", "puntos": 10 }
+      ]
     }
   ]
 }

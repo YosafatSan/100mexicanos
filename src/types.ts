@@ -28,7 +28,7 @@ export interface Equipo {
 }
 
 export interface ReglasPuntaje {
-  puntajeObjetivo: number;
+  numeroRondas: number;
   multiplicadoresPorRonda: number[];
   strikesMaximos: number;
   strikesDesempate: number;
@@ -36,6 +36,7 @@ export interface ReglasPuntaje {
 }
 
 export type FaseRonda =
+  | "configuracion"
   | "seleccionPregunta"
   | "faceoff"
   | "jugando"

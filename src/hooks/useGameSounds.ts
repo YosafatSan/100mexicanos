@@ -33,7 +33,10 @@ export function useGameSounds(estado: EstadoJuego | null, activo: boolean) {
       if (barridoCompleto) sonidos.victoria();
       else sonidos.fanfarria();
     }
-    if (estado.fase === "finJuego" && prev.fase !== "finJuego") sonidos.victoria();
+    if (estado.fase === "finJuego" && prev.fase !== "finJuego") {
+      if (estado.ganadorRondaPrincipal) sonidos.victoria();
+      else sonidos.fanfarria();
+    }
 
     const dr = estado.dineroRapido;
     const drPrev = prev.dineroRapido;

@@ -43,7 +43,11 @@ export default function BoardView() {
   // queda con la duda de cuáles eran las respuestas, y no hay un salto
   // feo a una pantalla de "solo marcadores" de por medio.
   const mostrarArco = !esFinJuego && (s.preguntaActual !== null || s.casillas.length > 0);
-  const rondaLabel = s.esDesempate ? "Desempate" : `Ronda ${s.numeroRonda}`;
+  const rondaLabel = esFinJuego
+    ? "Partida terminada"
+    : s.esDesempate
+      ? "Ronda extra"
+      : `Ronda ${s.numeroRonda} de ${s.reglas.numeroRondas}`;
 
   return (
     <div
@@ -103,17 +107,21 @@ export default function BoardView() {
             {rondaLabel} · x{s.multiplicadorActual}
           </p>
 
-          {esFinJuego && s.ganadorRondaPrincipal ? (
-            <motion.h1
-              key="ganador"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
-              style={{ fontSize: "clamp(24px, 5.5vw, 40px)", margin: 0, maxWidth: "90vw" }}
-            >
-              🎉 {s.equipos[s.ganadorRondaPrincipal].nombre} gana la ronda principal con{" "}
-              {s.equipos[s.ganadorRondaPrincipal].puntos} puntos
-            </motion.h1>
+          {esFinJuego ? (
+            s.ganadorRondaPrincipal ? (
+              <motion.h1
+                key="ganador"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
+                style={{ fontSize: "clamp(24px, 5.5vw, 40px)", margin: 0, maxWidth: "90vw" }}
+              >
+                🎉 {s.equipos[s.ganadorRondaPrincipal].nombre} gana la ronda principal con{" "}
+                {s.equipos[s.ganadorRondaPrincipal].puntos} puntos
+              </motion.h1>
+            ) : (
+              <h1 style={{ fontSize: "clamp(24px, 5.5vw, 40px)", margin: 0, maxWidth: "90vw" }}>{s.mensaje}</h1>
+            )
           ) : s.preguntaActual ? (
             <h1 style={{ fontSize: "clamp(20px, 4.5vw, 32px)", margin: 0, maxWidth: "90vw" }}>{s.preguntaActual.texto}</h1>
           ) : (

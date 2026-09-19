@@ -5,7 +5,7 @@ import { respuestasVaciasIniciales, totalCombinado } from "../lib/dineroRapido";
 import bancoEjemplo from "../data/preguntas.ejemplo.json";
 
 const REGLAS_CLASICAS: ReglasPuntaje = {
-  puntajeObjetivo: 300,
+  numeroRondas: 5,
   multiplicadoresPorRonda: [1, 1, 1, 2, 3],
   strikesMaximos: 3,
   strikesDesempate: 1,
@@ -14,7 +14,7 @@ const REGLAS_CLASICAS: ReglasPuntaje = {
 
 function estadoInicial(): EstadoJuego {
   return {
-    fase: "seleccionPregunta",
+    fase: "configuracion",
     equipos: {
       equipoA: { id: "equipoA", nombre: "Equipo A", jugadores: [], puntos: 0 },
       equipoB: { id: "equipoB", nombre: "Equipo B", jugadores: [], puntos: 0 },
@@ -43,12 +43,18 @@ function estadoInicial(): EstadoJuego {
       respuestasJugador1: respuestasVaciasIniciales(),
       respuestasJugador2: respuestasVaciasIniciales(),
     },
-    mensaje: "Elige la pregunta de la ronda 1",
+    mensaje: "Define cuántas rondas se van a jugar y presiona Comenzar",
   };
 }
 
 function otroEquipo(id: EquipoId): EquipoId {
   return id === "equipoA" ? "equipoB" : "equipoA";
+}
+
+function determinarGanador(estado: EstadoJuego): EquipoId | null {
+  const { equipoA, equipoB } = estado.equipos;
+  if (equipoA.puntos === equipoB.puntos) return null;
+  return equipoA.puntos > equipoB.puntos ? "equipoA" : "equipoB";
 }
 
 function idUnico(): string {
@@ -60,6 +66,9 @@ interface GameStore {
   historial: EstadoJuego[];
   deshacer: () => void;
   reiniciarPartida: () => void;
+  nuevaPartida: () => void;
+  comenzarPartida: (numeroRondas: number) => void;
+  agregarRondaExtra: () => void;
 
   // Config (sin historial: no son "acciones de juego" a deshacer)
   setNombreEquipo: (equipo: EquipoId, nombre: string) => void;
@@ -133,7 +142,6 @@ export const useGameStore = create<GameStore>((set, get) => {
       ...estado.equipos,
       [equipo]: { ...estado.equipos[equipo], puntos: estado.equipos[equipo].puntos + puntos },
     };
-    const gano = equipos[equipo].puntos >= estado.reglas.puntajeObjetivo;
     return {
       ...estado,
       equipos,
@@ -141,11 +149,8 @@ export const useGameStore = create<GameStore>((set, get) => {
       // revelan automáticamente: el presentador las destapa una por una (o
       // todas de un tirón) con revelarRestante/revelarTodasLasCasillas,
       // para controlar el ritmo del show.
-      fase: gano ? "finJuego" : "finRonda",
-      ganadorRondaPrincipal: gano ? equipo : null,
-      mensaje: gano
-        ? `${equipos[equipo].nombre} gana la ronda principal con ${equipos[equipo].puntos} puntos`
-        : `${equipos[equipo].nombre} se lleva ${puntos} puntos`,
+      fase: "finRonda",
+      mensaje: `${equipos[equipo].nombre} se lleva ${puntos} puntos`,
     };
   }
 
@@ -160,6 +165,55 @@ export const useGameStore = create<GameStore>((set, get) => {
         return { estado, historial };
       }),
     reiniciarPartida: () => set({ estado: estadoInicial(), historial: [] }),
+
+    // A diferencia de "reiniciarPartida", conserva el banco de preguntas y
+    // cuáles ya se usaron, para que una noche de varias partidas seguidas no
+    // repita preguntas hasta agotar el banco completo.
+    nuevaPartida: () =>
+      set((s) => ({
+        estado: {
+          ...estadoInicial(),
+          banco: s.estado.banco,
+          preguntasUsadasIds: s.estado.preguntasUsadasIds,
+          reglas: { ...REGLAS_CLASICAS, numeroRondas: s.estado.reglas.numeroRondas },
+        },
+        historial: [],
+      })),
+
+    comenzarPartida: (numeroRondas) =>
+      conHistorial((s) => {
+        const reglas = { ...s.reglas, numeroRondas: Math.max(1, Math.round(numeroRondas) || 1) };
+        return {
+          ...s,
+          reglas,
+          fase: "seleccionPregunta",
+          numeroRonda: 1,
+          esDesempate: false,
+          multiplicadorActual: reglas.multiplicadoresPorRonda[0] ?? 1,
+          strikesMax: reglas.strikesMaximos,
+          mensaje: "Elige la pregunta de la ronda 1",
+        };
+      }),
+
+    // El presentador la usa desde la pantalla de fin de partida cuando el
+    // marcador queda empatado (o simplemente quiere alargar el juego):
+    // agrega una ronda más con la regla clásica de desempate (1 solo strike).
+    agregarRondaExtra: () =>
+      conHistorial((s) => {
+        const reglas = { ...s.reglas, numeroRondas: s.reglas.numeroRondas + 1 };
+        return {
+          ...s,
+          reglas,
+          esDesempate: true,
+          multiplicadorActual: 1,
+          strikesMax: reglas.strikesDesempate,
+          fase: "seleccionPregunta",
+          equipoEnControl: null,
+          strikes: 0,
+          puntosAcumuladosRonda: 0,
+          mensaje: "Ronda extra de desempate — elige la pregunta",
+        };
+      }),
 
     setNombreEquipo: (equipo, nombre) =>
       sinHistorial((s) => ({
@@ -286,16 +340,22 @@ export const useGameStore = create<GameStore>((set, get) => {
     siguienteRonda: () =>
       conHistorial((s) => {
         const numeroRonda = s.numeroRonda + 1;
-        const hayMasRondasNormales = numeroRonda <= s.reglas.multiplicadoresPorRonda.length;
-        const esDesempate = s.esDesempate || !hayMasRondasNormales;
+        if (numeroRonda > s.reglas.numeroRondas) {
+          const ganador = determinarGanador(s);
+          return {
+            ...s,
+            numeroRonda,
+            fase: "finJuego",
+            ganadorRondaPrincipal: ganador,
+            mensaje: ganador
+              ? `${s.equipos[ganador].nombre} gana la partida con ${s.equipos[ganador].puntos} puntos`
+              : `Empate a ${s.equipos.equipoA.puntos} puntos — ¿qué quieres hacer?`,
+          };
+        }
         return {
           ...s,
           numeroRonda,
-          esDesempate,
-          multiplicadorActual: hayMasRondasNormales
-            ? s.reglas.multiplicadoresPorRonda[numeroRonda - 1]
-            : 1,
-          strikesMax: esDesempate ? s.reglas.strikesDesempate : s.reglas.strikesMaximos,
+          multiplicadorActual: s.reglas.multiplicadoresPorRonda[numeroRonda - 1] ?? 1,
           fase: "seleccionPregunta",
           // preguntaActual y casillas NO se limpian aquí a propósito: el
           // tablero se queda mostrando la pregunta anterior (ya toda
@@ -304,9 +364,7 @@ export const useGameStore = create<GameStore>((set, get) => {
           equipoEnControl: null,
           strikes: 0,
           puntosAcumuladosRonda: 0,
-          mensaje: esDesempate
-            ? "Ronda de desempate — elige la pregunta"
-            : `Elige la pregunta de la ronda ${numeroRonda}`,
+          mensaje: `Elige la pregunta de la ronda ${numeroRonda}`,
         };
       }),
 
