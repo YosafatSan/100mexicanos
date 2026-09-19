@@ -1319,6 +1319,366 @@
         { "texto": "La gente anda de mal humor", "puntos": 16 },
         { "texto": "Se necesita llevar paraguas", "puntos": 10 }
       ]
+    },
+    {
+      "id": "p111",
+      "categoria": "Psicología",
+      "texto": "Nombra una razón común por la que alguien va a terapia",
+      "respuestas": [
+        { "texto": "Ansiedad", "puntos": 28 },
+        { "texto": "Depresión", "puntos": 24 },
+        { "texto": "Problemas de pareja", "puntos": 20 },
+        { "texto": "Estrés", "puntos": 16 },
+        { "texto": "Baja autoestima", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p112",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que imaginas que dice un psicólogo en la primera sesión",
+      "respuestas": [
+        { "texto": "¿Cómo te sientes?", "puntos": 30 },
+        { "texto": "Cuéntame de tu infancia", "puntos": 24 },
+        { "texto": "¿Qué te trae por aquí?", "puntos": 18 },
+        { "texto": "Tómate tu tiempo", "puntos": 16 },
+        { "texto": "Esto es confidencial", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p113",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que la gente cree que va a pasar en su primera cita con el psicólogo",
+      "respuestas": [
+        { "texto": "Que lo van a psicoanalizar", "puntos": 28 },
+        { "texto": "Que le van a hacer muchas preguntas", "puntos": 24 },
+        { "texto": "Que se va a sentir incómodo", "puntos": 20 },
+        { "texto": "Que le van a dar un diagnóstico", "puntos": 16 },
+        { "texto": "Que va a llorar", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p114",
+      "categoria": "Psicología",
+      "texto": "Nombra un motivo por el que alguien evita ir al psicólogo",
+      "respuestas": [
+        { "texto": "El costo", "puntos": 30 },
+        { "texto": "La pena o el estigma", "puntos": 24 },
+        { "texto": "Pensar que no lo necesita", "puntos": 18 },
+        { "texto": "Miedo a lo que va a descubrir", "puntos": 16 },
+        { "texto": "Falta de tiempo", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p115",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que la gente hace antes de su primera sesión de terapia",
+      "respuestas": [
+        { "texto": "Ponerse nervioso", "puntos": 30 },
+        { "texto": "Pensar qué va a decir", "puntos": 24 },
+        { "texto": "Investigar sobre el psicólogo", "puntos": 18 },
+        { "texto": "Prepararse mentalmente", "puntos": 16 },
+        { "texto": "Casi cancelar por miedo", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p116",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que sientes después de una buena sesión de terapia",
+      "respuestas": [
+        { "texto": "Alivio", "puntos": 30 },
+        { "texto": "Cansancio", "puntos": 24 },
+        { "texto": "Claridad mental", "puntos": 20 },
+        { "texto": "Ganas de llorar", "puntos": 14 },
+        { "texto": "Tranquilidad", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p117",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que la gente le cuenta a su psicólogo",
+      "respuestas": [
+        { "texto": "Problemas familiares", "puntos": 28 },
+        { "texto": "Problemas de pareja", "puntos": 24 },
+        { "texto": "Cosas del trabajo", "puntos": 20 },
+        { "texto": "Miedos o inseguridades", "puntos": 16 },
+        { "texto": "Secretos", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p118",
+      "categoria": "Psicología",
+      "texto": "Nombra un tipo de profesional al que la gente confunde con un psicólogo",
+      "respuestas": [
+        { "texto": "Psiquiatra", "puntos": 32 },
+        { "texto": "Consejero", "puntos": 24 },
+        { "texto": "Coach de vida", "puntos": 18 },
+        { "texto": "Terapeuta", "puntos": 14 },
+        { "texto": "Trabajador social", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p119",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que crees que anota un psicólogo en su libreta durante la sesión",
+      "respuestas": [
+        { "texto": "Lo que dices", "puntos": 30 },
+        { "texto": "Sus observaciones", "puntos": 24 },
+        { "texto": "Fechas importantes", "puntos": 18 },
+        { "texto": "Posibles diagnósticos", "puntos": 16 },
+        { "texto": "Nada, solo finge", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p120",
+      "categoria": "Psicología",
+      "texto": "Nombra un consejo típico que da un psicólogo",
+      "respuestas": [
+        { "texto": "Pon límites", "puntos": 30 },
+        { "texto": "Cuida tu salud mental", "puntos": 24 },
+        { "texto": "Habla de lo que sientes", "puntos": 18 },
+        { "texto": "Practica el autocuidado", "puntos": 16 },
+        { "texto": "Busca ayuda si la necesitas", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p121",
+      "categoria": "Psicología",
+      "texto": "Nombra un mecanismo de defensa psicológico que hayas escuchado mencionar",
+      "respuestas": [
+        { "texto": "Negación", "puntos": 30 },
+        { "texto": "Represión", "puntos": 24 },
+        { "texto": "Proyección", "puntos": 18 },
+        { "texto": "Evasión", "puntos": 16 },
+        { "texto": "Racionalización", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p122",
+      "categoria": "Psicología",
+      "texto": "Nombra un trastorno mental del que hayas oído hablar",
+      "respuestas": [
+        { "texto": "Depresión", "puntos": 32 },
+        { "texto": "Ansiedad", "puntos": 24 },
+        { "texto": "Bipolaridad", "puntos": 18 },
+        { "texto": "Trastorno de pánico", "puntos": 14 },
+        { "texto": "TOC", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p123",
+      "categoria": "Psicología",
+      "texto": "Nombra un psicólogo o científico famoso relacionado con la mente",
+      "respuestas": [
+        { "texto": "Freud", "puntos": 36 },
+        { "texto": "Pavlov", "puntos": 24 },
+        { "texto": "Skinner", "puntos": 16 },
+        { "texto": "Jung", "puntos": 12 },
+        { "texto": "Piaget", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p124",
+      "categoria": "Psicología",
+      "texto": "Nombra una fobia común",
+      "respuestas": [
+        { "texto": "A las alturas", "puntos": 30 },
+        { "texto": "A las arañas", "puntos": 24 },
+        { "texto": "A los espacios cerrados", "puntos": 18 },
+        { "texto": "A hablar en público", "puntos": 16 },
+        { "texto": "A la oscuridad", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p125",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que se estudia en la carrera de psicología",
+      "respuestas": [
+        { "texto": "La mente humana", "puntos": 30 },
+        { "texto": "El comportamiento", "puntos": 24 },
+        { "texto": "Las emociones", "puntos": 18 },
+        { "texto": "Los trastornos mentales", "puntos": 16 },
+        { "texto": "El desarrollo humano", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p126",
+      "categoria": "Psicología",
+      "texto": "Nombra un tipo de terapia del que hayas oído hablar",
+      "respuestas": [
+        { "texto": "Terapia de pareja", "puntos": 28 },
+        { "texto": "Terapia cognitivo-conductual", "puntos": 24 },
+        { "texto": "Terapia familiar", "puntos": 20 },
+        { "texto": "Hipnoterapia", "puntos": 16 },
+        { "texto": "Terapia de grupo", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p127",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que la gente asocia con el test de Rorschach (el de las manchas)",
+      "respuestas": [
+        { "texto": "Manchas de tinta", "puntos": 30 },
+        { "texto": "Ver figuras o formas", "puntos": 24 },
+        { "texto": "Interpretar lo que ves", "puntos": 18 },
+        { "texto": "Diagnóstico de personalidad", "puntos": 16 },
+        { "texto": "Simetría en las imágenes", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p128",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que asocias con el psicoanálisis",
+      "respuestas": [
+        { "texto": "El diván", "puntos": 30 },
+        { "texto": "Freud", "puntos": 24 },
+        { "texto": "Hablar de la infancia", "puntos": 18 },
+        { "texto": "Los sueños", "puntos": 16 },
+        { "texto": "El inconsciente", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p129",
+      "categoria": "Psicología",
+      "texto": "Nombra algo relacionado con la memoria que estudia la psicología",
+      "respuestas": [
+        { "texto": "Los recuerdos", "puntos": 30 },
+        { "texto": "El olvido", "puntos": 24 },
+        { "texto": "Los traumas", "puntos": 18 },
+        { "texto": "El déjà vu", "puntos": 16 },
+        { "texto": "Los sueños", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p130",
+      "categoria": "Psicología",
+      "texto": "Nombra una emoción básica que estudian los psicólogos",
+      "respuestas": [
+        { "texto": "Miedo", "puntos": 28 },
+        { "texto": "Tristeza", "puntos": 24 },
+        { "texto": "Alegría", "puntos": 20 },
+        { "texto": "Enojo", "puntos": 16 },
+        { "texto": "Sorpresa", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p131",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que la gente cree (aunque no sea cierto) que puede hacer un psicólogo",
+      "respuestas": [
+        { "texto": "Leerte la mente", "puntos": 32 },
+        { "texto": "Hipnotizarte", "puntos": 24 },
+        { "texto": "Saber si mientes", "puntos": 18 },
+        { "texto": "Adivinar tu personalidad", "puntos": 14 },
+        { "texto": "Diagnosticarte con solo verte", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p132",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que la gente cree que significa cuando sueñas con algo específico",
+      "respuestas": [
+        { "texto": "Que va a pasar en la realidad", "puntos": 30 },
+        { "texto": "Que significa algo oculto", "puntos": 24 },
+        { "texto": "Que refleja tus miedos", "puntos": 18 },
+        { "texto": "Que es un mensaje", "puntos": 16 },
+        { "texto": "Que no significa nada", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p133",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que dice la gente para \"psicoanalizar\" a alguien sin ser psicólogo",
+      "respuestas": [
+        { "texto": "Eso es trauma de tu infancia", "puntos": 28 },
+        { "texto": "Tienes complejo de...", "puntos": 24 },
+        { "texto": "Necesitas terapia", "puntos": 20 },
+        { "texto": "Eso es un mecanismo de defensa", "puntos": 16 },
+        { "texto": "Te falta amor propio", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p134",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que la gente confunde entre un psicólogo y un psiquiatra",
+      "respuestas": [
+        { "texto": "Que uno receta medicamentos y el otro no", "puntos": 30 },
+        { "texto": "Que hacen lo mismo", "puntos": 24 },
+        { "texto": "Que uno es médico y el otro no", "puntos": 18 },
+        { "texto": "El precio", "puntos": 16 },
+        { "texto": "Quién te puede diagnosticar", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p135",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que la gente cree que revela tu personalidad",
+      "respuestas": [
+        { "texto": "Tu signo zodiacal", "puntos": 30 },
+        { "texto": "Tu tipo de sangre", "puntos": 24 },
+        { "texto": "Tu letra al escribir", "puntos": 18 },
+        { "texto": "Tus gustos musicales", "puntos": 16 },
+        { "texto": "La forma de tu cara", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p136",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que la gente cree que ayuda a \"leer\" a otra persona",
+      "respuestas": [
+        { "texto": "Su lenguaje corporal", "puntos": 30 },
+        { "texto": "Su mirada", "puntos": 24 },
+        { "texto": "Su tono de voz", "puntos": 18 },
+        { "texto": "Sus gestos", "puntos": 16 },
+        { "texto": "Lo que no dice", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p137",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que se dice que puede indicar estrés en una persona",
+      "respuestas": [
+        { "texto": "Insomnio", "puntos": 30 },
+        { "texto": "Cambios de humor", "puntos": 24 },
+        { "texto": "Dolores de cabeza", "puntos": 18 },
+        { "texto": "Comer de más o de menos", "puntos": 16 },
+        { "texto": "Cansancio constante", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p138",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que la gente cree que causa el estrés en la vida diaria",
+      "respuestas": [
+        { "texto": "El trabajo", "puntos": 30 },
+        { "texto": "El dinero", "puntos": 24 },
+        { "texto": "La familia", "puntos": 18 },
+        { "texto": "El tráfico", "puntos": 16 },
+        { "texto": "Las redes sociales", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p139",
+      "categoria": "Psicología",
+      "texto": "Nombra algo que la gente hace para \"desahogarse\" emocionalmente",
+      "respuestas": [
+        { "texto": "Hablar con un amigo", "puntos": 30 },
+        { "texto": "Llorar", "puntos": 24 },
+        { "texto": "Hacer ejercicio", "puntos": 18 },
+        { "texto": "Escribir lo que siente", "puntos": 16 },
+        { "texto": "Ir a terapia", "puntos": 8 }
+      ]
+    },
+    {
+      "id": "p140",
+      "categoria": "Psicología",
+      "texto": "Nombra un rasgo que asocias con una persona extrovertida",
+      "respuestas": [
+        { "texto": "Hablar mucho", "puntos": 30 },
+        { "texto": "Ser sociable", "puntos": 24 },
+        { "texto": "Le gusta ser el centro de atención", "puntos": 18 },
+        { "texto": "Hacer amigos fácil", "puntos": 16 },
+        { "texto": "Ser espontáneo", "puntos": 8 }
+      ]
     }
   ]
 }

@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import type { ChangeEvent } from "react";
 import { useGameStore } from "../store/gameStore";
+import { colorDeCategoria } from "../lib/categoriaColor";
 import type { Pregunta, Respuesta } from "../types";
 
 const FILA_VACIA: Respuesta = { texto: "", puntos: 0 };
 const TAMANO_MUESTRA = 10;
+// La muestra siempre reserva un lugar para esta categoría si hay alguna
+// disponible, para que nunca falte una pregunta de psicología a la mano.
+const CATEGORIA_GARANTIZADA = "Psicología";
 
 function barajar<T>(arr: T[]): T[] {
   const copia = [...arr];
@@ -20,16 +24,50 @@ function idsDisponibles(banco: Pregunta[], usadas: string[]): string[] {
   return banco.filter((p) => !usadasSet.has(p.id)).map((p) => p.id);
 }
 
-// Quita de la muestra las que ya se usaron o se borraron, y la rellena con
-// nuevas al azar hasta llegar a 10 — sin volver a barajar las que ya
-// estaban (ese reshuffle completo solo pasa al darle "Re-rollear").
+function categoriaDe(p: Pregunta): string {
+  return p.categoria ?? "Sin categoría";
+}
+
+// Arma la muestra sin repetir categoría entre las 10 (con ~17 categorías en
+// el banco, alcanzan de sobra), conservando las que ya se mostraban y siguen
+// disponibles — solo se elige al azar lo que hace falta para completar,
+// sin volver a barajar lo que ya estaba (ese reshuffle completo solo pasa
+// al darle "Re-rollear", que llama a esta misma función con `actual: []`).
 function completarMuestra(actual: string[], banco: Pregunta[], usadas: string[]): string[] {
-  const disponibles = new Set(idsDisponibles(banco, usadas));
-  const conservadas = actual.filter((id) => disponibles.has(id));
+  const usadasSet = new Set(usadas);
+  const disponibles = banco.filter((p) => !usadasSet.has(p.id));
+  const disponiblesPorId = new Map(disponibles.map((p) => [p.id, p]));
+
+  const conservadas = actual.filter((id) => disponiblesPorId.has(id));
+  const categoriasCubiertas = new Set(conservadas.map((id) => categoriaDe(disponiblesPorId.get(id)!)));
+
   const faltan = TAMANO_MUESTRA - conservadas.length;
   if (faltan <= 0) return conservadas;
-  const candidatos = barajar([...disponibles].filter((id) => !conservadas.includes(id)));
-  return [...conservadas, ...candidatos.slice(0, faltan)];
+
+  const porCategoria = new Map<string, Pregunta[]>();
+  for (const p of disponibles) {
+    if (conservadas.includes(p.id)) continue;
+    const cat = categoriaDe(p);
+    if (categoriasCubiertas.has(cat)) continue;
+    if (!porCategoria.has(cat)) porCategoria.set(cat, []);
+    porCategoria.get(cat)!.push(p);
+  }
+
+  const nuevas: string[] = [];
+
+  const garantizadas = porCategoria.get(CATEGORIA_GARANTIZADA);
+  if (!categoriasCubiertas.has(CATEGORIA_GARANTIZADA) && garantizadas) {
+    nuevas.push(garantizadas[Math.floor(Math.random() * garantizadas.length)].id);
+    porCategoria.delete(CATEGORIA_GARANTIZADA);
+  }
+
+  for (const cat of barajar([...porCategoria.keys()])) {
+    if (nuevas.length >= faltan) break;
+    const opciones = porCategoria.get(cat)!;
+    nuevas.push(opciones[Math.floor(Math.random() * opciones.length)].id);
+  }
+
+  return [...conservadas, ...nuevas];
 }
 
 export default function BancoEditor() {
@@ -44,9 +82,7 @@ export default function BancoEditor() {
   const [respuestas, setRespuestas] = useState<Respuesta[]>([{ ...FILA_VACIA }, { ...FILA_VACIA }]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const [muestraIds, setMuestraIds] = useState<string[]>(() =>
-    barajar(idsDisponibles(banco, usadas)).slice(0, TAMANO_MUESTRA),
-  );
+  const [muestraIds, setMuestraIds] = useState<string[]>(() => completarMuestra([], banco, usadas));
 
   useEffect(() => {
     setMuestraIds((actual) => completarMuestra(actual, banco, usadas));
@@ -56,7 +92,7 @@ export default function BancoEditor() {
   const muestra = muestraIds.map((id) => banco.find((p) => p.id === id)).filter((p): p is Pregunta => Boolean(p));
 
   function reRollear() {
-    setMuestraIds(barajar(disponibles).slice(0, TAMANO_MUESTRA));
+    setMuestraIds(completarMuestra([], banco, usadas));
   }
 
   function cargarParaEditar(p: Pregunta) {
@@ -243,7 +279,11 @@ function PreguntaItem({
     <details className="pv-collapsible">
       <summary>
         {usada && <span className="pv-badge">usada</span>}
-        {pregunta.categoria && <span className="pv-badge">{pregunta.categoria}</span>}
+        {pregunta.categoria && (
+          <span className="pv-badge" style={colorDeCategoria(pregunta.categoria)}>
+            {pregunta.categoria}
+          </span>
+        )}
         <span>{pregunta.texto}</span>
       </summary>
       <div className="pv-collapsible-body" style={{ paddingTop: 10 }}>
