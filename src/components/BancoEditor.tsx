@@ -1,9 +1,36 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ChangeEvent } from "react";
 import { useGameStore } from "../store/gameStore";
 import type { Pregunta, Respuesta } from "../types";
 
 const FILA_VACIA: Respuesta = { texto: "", puntos: 0 };
+const TAMANO_MUESTRA = 10;
+
+function barajar<T>(arr: T[]): T[] {
+  const copia = [...arr];
+  for (let i = copia.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  return copia;
+}
+
+function idsDisponibles(banco: Pregunta[], usadas: string[]): string[] {
+  const usadasSet = new Set(usadas);
+  return banco.filter((p) => !usadasSet.has(p.id)).map((p) => p.id);
+}
+
+// Quita de la muestra las que ya se usaron o se borraron, y la rellena con
+// nuevas al azar hasta llegar a 10 — sin volver a barajar las que ya
+// estaban (ese reshuffle completo solo pasa al darle "Re-rollear").
+function completarMuestra(actual: string[], banco: Pregunta[], usadas: string[]): string[] {
+  const disponibles = new Set(idsDisponibles(banco, usadas));
+  const conservadas = actual.filter((id) => disponibles.has(id));
+  const faltan = TAMANO_MUESTRA - conservadas.length;
+  if (faltan <= 0) return conservadas;
+  const candidatos = barajar([...disponibles].filter((id) => !conservadas.includes(id)));
+  return [...conservadas, ...candidatos.slice(0, faltan)];
+}
 
 export default function BancoEditor() {
   const banco = useGameStore((s) => s.estado.banco);
@@ -16,6 +43,21 @@ export default function BancoEditor() {
   const [texto, setTexto] = useState("");
   const [respuestas, setRespuestas] = useState<Respuesta[]>([{ ...FILA_VACIA }, { ...FILA_VACIA }]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const [muestraIds, setMuestraIds] = useState<string[]>(() =>
+    barajar(idsDisponibles(banco, usadas)).slice(0, TAMANO_MUESTRA),
+  );
+
+  useEffect(() => {
+    setMuestraIds((actual) => completarMuestra(actual, banco, usadas));
+  }, [banco, usadas]);
+
+  const disponibles = idsDisponibles(banco, usadas);
+  const muestra = muestraIds.map((id) => banco.find((p) => p.id === id)).filter((p): p is Pregunta => Boolean(p));
+
+  function reRollear() {
+    setMuestraIds(barajar(disponibles).slice(0, TAMANO_MUESTRA));
+  }
 
   function cargarParaEditar(p: Pregunta) {
     setEditandoId(p.id);
@@ -137,38 +179,94 @@ export default function BancoEditor() {
         </div>
       </details>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        {banco.map((p) => (
-          <details key={p.id} className="pv-collapsible">
-            <summary>
-              {usadas.includes(p.id) && <span className="pv-badge">usada</span>}
-              {p.categoria && <span className="pv-badge">{p.categoria}</span>}
-              <span>{p.texto}</span>
-            </summary>
-            <div className="pv-collapsible-body" style={{ paddingTop: 10 }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: 4, marginBottom: 10 }}>
-                {p.respuestas.map((r, i) => (
-                  <div key={i} className="pv-row" style={{ fontSize: 13 }}>
-                    <span>{r.texto}</span>
-                    <span style={{ color: "var(--pv-accent)" }}>{r.puntos}</span>
-                  </div>
-                ))}
-              </div>
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                <button className="pv-btn pv-btn-primary" onClick={() => elegirPregunta(p.id)}>
-                  Lanzar esta pregunta
-                </button>
-                <button className="pv-btn" onClick={() => cargarParaEditar(p)}>
-                  Editar
-                </button>
-                <button className="pv-btn pv-btn-danger" onClick={() => eliminarPregunta(p.id)}>
-                  Eliminar
-                </button>
-              </div>
-            </div>
-          </details>
-        ))}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
+        <p className="pv-card-title" style={{ margin: 0 }}>
+          Preguntas sin usar ({disponibles.length} disponibles)
+        </p>
+        <button className="pv-btn" onClick={reRollear} disabled={disponibles.length === 0}>
+          🔀 Re-rollear
+        </button>
       </div>
+
+      {muestra.length === 0 ? (
+        <p style={{ color: "var(--pv-text-dim)", fontSize: 13, marginBottom: 16 }}>
+          Ya no quedan preguntas sin usar. "Reiniciar partida" las desmarca todas, o crea/importa más.
+        </p>
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
+          {muestra.map((p) => (
+            <PreguntaItem
+              key={p.id}
+              pregunta={p}
+              usada={false}
+              onLanzar={elegirPregunta}
+              onEditar={cargarParaEditar}
+              onEliminar={eliminarPregunta}
+            />
+          ))}
+        </div>
+      )}
+
+      <details className="pv-collapsible">
+        <summary>Ver banco completo ({banco.length} preguntas)</summary>
+        <div className="pv-collapsible-body" style={{ display: "flex", flexDirection: "column", gap: 8, paddingTop: 10 }}>
+          {banco.map((p) => (
+            <PreguntaItem
+              key={p.id}
+              pregunta={p}
+              usada={usadas.includes(p.id)}
+              onLanzar={elegirPregunta}
+              onEditar={cargarParaEditar}
+              onEliminar={eliminarPregunta}
+            />
+          ))}
+        </div>
+      </details>
     </div>
+  );
+}
+
+function PreguntaItem({
+  pregunta,
+  usada,
+  onLanzar,
+  onEditar,
+  onEliminar,
+}: {
+  pregunta: Pregunta;
+  usada: boolean;
+  onLanzar: (id: string) => void;
+  onEditar: (p: Pregunta) => void;
+  onEliminar: (id: string) => void;
+}) {
+  return (
+    <details className="pv-collapsible">
+      <summary>
+        {usada && <span className="pv-badge">usada</span>}
+        {pregunta.categoria && <span className="pv-badge">{pregunta.categoria}</span>}
+        <span>{pregunta.texto}</span>
+      </summary>
+      <div className="pv-collapsible-body" style={{ paddingTop: 10 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4, marginBottom: 10 }}>
+          {pregunta.respuestas.map((r, i) => (
+            <div key={i} className="pv-row" style={{ fontSize: 13 }}>
+              <span>{r.texto}</span>
+              <span style={{ color: "var(--pv-accent)" }}>{r.puntos}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <button className="pv-btn pv-btn-primary" onClick={() => onLanzar(pregunta.id)}>
+            Lanzar esta pregunta
+          </button>
+          <button className="pv-btn" onClick={() => onEditar(pregunta)}>
+            Editar
+          </button>
+          <button className="pv-btn pv-btn-danger" onClick={() => onEliminar(pregunta.id)}>
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </details>
   );
 }

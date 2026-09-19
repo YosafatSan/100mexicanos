@@ -15,10 +15,14 @@ export default function PresenterView() {
     revelarCasilla,
     marcarStrike,
     resolverRobo,
+    revelarRestante,
+    revelarTodasLasCasillas,
     siguienteRonda,
     setNombreEquipo,
     irADineroRapido,
   } = useGameStore();
+
+  const quedanOcultas = (s.fase === "finRonda" || s.fase === "finJuego") && s.casillas.some((c) => !c.revelada);
 
   return (
     <div className="panel-presentador">
@@ -152,6 +156,19 @@ export default function PresenterView() {
             </div>
             <button className="pv-btn pv-btn-danger pv-btn-block" style={{ marginTop: 14 }} onClick={() => resolverRobo(false)}>
               Robo fallido
+            </button>
+          </div>
+        )}
+
+        {quedanOcultas && (
+          <div className="pv-card">
+            <p className="pv-card-title">Revelar respuestas restantes</p>
+            <p style={{ color: "var(--pv-text-dim)", fontSize: 13, margin: "0 0 10px" }}>
+              La ronda ya terminó — destápalas una por una al ritmo que quieras, para que no quede duda de cuáles eran.
+            </p>
+            <CasillasPresenter casillas={s.casillas} onRevelar={revelarRestante} />
+            <button className="pv-btn pv-btn-block" style={{ marginTop: 10 }} onClick={revelarTodasLasCasillas}>
+              Revelar todas de una vez
             </button>
           </div>
         )}

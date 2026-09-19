@@ -79,6 +79,8 @@ interface GameStore {
   revelarCasilla: (index: number) => void;
   marcarStrike: () => void;
   resolverRobo: (exitoso: boolean, indexRespuesta?: number) => void;
+  revelarRestante: (index: number) => void;
+  revelarTodasLasCasillas: () => void;
   siguienteRonda: () => void;
 
   // Dinero Rápido
@@ -135,9 +137,10 @@ export const useGameStore = create<GameStore>((set, get) => {
     return {
       ...estado,
       equipos,
-      // Se revela todo lo que haya quedado oculto (p. ej. tras un robo) para
-      // que el público no se quede con la duda de cuáles eran las respuestas.
-      casillas: estado.casillas.map((c) => ({ ...c, revelada: true })),
+      // Las casillas que hayan quedado ocultas (p. ej. tras un robo) NO se
+      // revelan automáticamente: el presentador las destapa una por una (o
+      // todas de un tirón) con revelarRestante/revelarTodasLasCasillas,
+      // para controlar el ritmo del show.
       fase: gano ? "finJuego" : "finRonda",
       ganadorRondaPrincipal: gano ? equipo : null,
       mensaje: gano
@@ -266,6 +269,19 @@ export const useGameStore = create<GameStore>((set, get) => {
         }
         return otorgarPuntos(s, s.equipoEnControl);
       }),
+
+    // Para destapar, una por una, las respuestas que quedaron ocultas al
+    // terminar la ronda (no afectan el puntaje: eso ya se calculó).
+    revelarRestante: (index) =>
+      conHistorial((s) => {
+        const casilla = s.casillas[index];
+        if (!casilla || casilla.revelada) return s;
+        const casillas = s.casillas.map((c, i) => (i === index ? { ...c, revelada: true } : c));
+        return { ...s, casillas };
+      }),
+
+    revelarTodasLasCasillas: () =>
+      conHistorial((s) => ({ ...s, casillas: s.casillas.map((c) => ({ ...c, revelada: true })) })),
 
     siguienteRonda: () =>
       conHistorial((s) => {
